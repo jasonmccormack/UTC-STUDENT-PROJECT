@@ -21,7 +21,7 @@ class AllMembers(models.Model):
 class ScrumTeam(models.Model):
     teamName = models.CharField(max_length=30, verbose_name="scrum team name: ")
     description = models.TextField(blank=True, null=True)
-    scrum_master = models.ForeignKey("allUsers", on_delete=models.CASCADE, null=True, blank=True)
+    scrum_master = models.ForeignKey("AllMembers", on_delete=models.CASCADE, null=True, blank=True)
     #domain = models.ForeignKey('Domain', null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__ (self):
