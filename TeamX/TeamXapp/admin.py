@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import AllMembers, AdminAccounts, Skills, ScrumTeam, ScrumTeamRole, WorkPattern, ScrumTeamStatus, ScrumTeamType
+from .models import AllMembers, AdminAccounts, Skills, ScrumTeam, ScrumTeamRole, WorkPattern, ScrumTeamStatus, ScrumTeamType, Domain
 
 # Admin
 class AllMemberAdmin(admin.ModelAdmin):
@@ -22,3 +22,4 @@ admin.site.register(ScrumTeamRole)
 admin.site.register(WorkPattern)
 admin.site.register(ScrumTeamType)
 admin.site.register(ScrumTeamStatus)
+admin.site.register(Domain)
