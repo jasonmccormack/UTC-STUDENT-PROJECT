@@ -11,7 +11,7 @@ class TeamAdmin(admin.ModelAdmin):
     list_display = (['name', 'scrum_master', 'status', 'current_focus',])
 
 class ScrumTeamAdmin(admin.ModelAdmin):
-    list_display = (['teamName', "scrum_master"])
+    list_display = (['teamName', "scrum_master", "current_focus"])
 
 # Register your models here.
 admin.site.register(AllMembers)#, allUserAdmin)
