@@ -1,11 +1,11 @@
 from django.db import models
 
 # Create your models here.
-class allUsers(models.Model):
+class AllMembers(models.Model):
     firstName = models.CharField(max_length=30, verbose_name="First name: ")
-    secondName = models.CharField(max_length=30, verbose_name="Second name: ")
+    secondName = models.CharField(max_length=30, verbose_name="Second name: ") 
     scrumTeam = models.ForeignKey("scrumTeam", on_delete=models.CASCADE, verbose_name="Scrum team: ", null=True, blank=True)
-    scrumTeamRole = models.ForeignKey("scrumTeamRole", on_delete=models.CASCADE, verbose_name="Scrum team role: ", null=True, blank=True)
+    myskill = models.ManyToManyField('skills', blank=True)
 
     def __str__ (self):
         return self.firstName
@@ -15,7 +15,7 @@ class allUsers(models.Model):
         verbose_name_plural = "Users"
 
 
-class scrumTeam(models.Model):
+class ScrumTeam(models.Model):
     teamName = models.CharField(max_length=30, verbose_name="scrum team name: ")
     description = models.TextField(blank=True, null=True)
     scrum_master = models.ForeignKey("allUsers", on_delete=models.CASCADE, null=True, blank=True)
@@ -29,7 +29,7 @@ class scrumTeam(models.Model):
         verbose_name_plural = 'Scrum Teams'
 
 
-class adminAccounts(models.Model):
+class AdminAccounts(models.Model):
     FirstName = models.CharField(max_length=50)
     LastName = models.CharField(max_length=50)
 
@@ -37,8 +37,11 @@ class adminAccounts(models.Model):
         verbose_name = 'Admin Account'
         verbose_name_plural = 'Admin Accounts'
 
+    def __str__(self):
+        return self.FirstName
 
-class skills(models.Model):
+
+class Skills(models.Model):
     
     skill = models.CharField(max_length=30, blank=True)
 
@@ -49,7 +52,7 @@ class skills(models.Model):
         verbose_name = 'Skill'
         verbose_name_plural = 'Skills'
 
-class scrumTeamRole(models.Model):
+class ScrumTeamRole(models.Model):
     name = models.CharField(max_length=30, verbose_name="Scrum Team Role:")
 
     def __str__(self):
