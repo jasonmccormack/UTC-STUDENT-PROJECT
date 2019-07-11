@@ -21,7 +21,7 @@ class scrumTeam(models.Model):
     domain = models.ForeignKey('Domain', null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__ (self):
-        return self.name
+        return self.teamName
     
     class Meta:
         verbose_name = 'Scrum Team'
@@ -35,7 +35,7 @@ class AdminAccounts(models.Model):
     class Meta:
         verbose_name = 'Admin Account'
         verbose_name_plural = 'Admin Accounts'
-        
+
 
 class Skills(models.Model):
     
