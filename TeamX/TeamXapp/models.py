@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 class AllMembers(models.Model):
     firstName = models.CharField(max_length=30, verbose_name="First name: ")
-    secondName = models.CharField(max_length=30, verbose_name="Second name: ") 
+    secondName = models.CharField(max_length=30, verbose_name="Second name: ")
     scrumTeam = models.ForeignKey("ScrumTeam", on_delete=models.CASCADE, verbose_name="Scrum team: ", null=True, blank=True)
     scrum_team_roles = models.ForeignKey("ScrumTeamRole", on_delete=models.CASCADE, verbose_name="Scrum Team Roles: ", null=True, blank=True)
     myskill = models.ManyToManyField('skills', blank=True, verbose_name="Skills")
@@ -31,7 +31,7 @@ class ScrumTeam(models.Model):
 
     def __str__ (self):
         return self.teamName
-    
+
     class Meta:
         verbose_name = 'Scrum Team'
         verbose_name_plural = 'Scrum Teams'
@@ -50,7 +50,7 @@ class AdminAccounts(models.Model):
 
 
 class Skills(models.Model):
-    
+
     skill = models.CharField(max_length=30, blank=True)
 
     def __str__(self):
