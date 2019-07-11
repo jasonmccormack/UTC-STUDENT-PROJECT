@@ -4,7 +4,8 @@ from django.db import models
 class AllMembers(models.Model):
     firstName = models.CharField(max_length=30, verbose_name="First name: ")
     secondName = models.CharField(max_length=30, verbose_name="Second name: ") 
-    scrumTeam = models.ForeignKey("scrumTeam", on_delete=models.CASCADE, verbose_name="Scrum team: ", null=True, blank=True)
+    scrumTeam = models.ForeignKey("ScrumTeam", on_delete=models.CASCADE, verbose_name="Scrum team: ", null=True, blank=True)
+    scrum_team_roles = models.ForeignKey("ScrumTeamRole", on_delete=models.CASCADE, verbose_name="Scrum Team Roles: ", null=True, blank=True)
     myskill = models.ManyToManyField('skills', blank=True, verbose_name="Skills")
     workpattern = models.ForeignKey("WorkPattern", on_delete=models.CASCADE, verbose_name="Work Pattern: ", null=True, blank=True)
     hours_per_week = models.CharField(max_length=3, verbose_name="Hours Per Week: ", null=True, blank=True)
