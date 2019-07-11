@@ -3,9 +3,10 @@ from django.db import models
 # Create your models here.
 class allUsers(models.Model):
     firstName = models.CharField(max_length=30, verbose_name="First name: ")
-    secondName = models.CharField(max_length=30, verbose_name="Second name: ")
+    secondName = models.CharField(max_length=30, verbose_name="Second name: ") 
     scrumTeam = models.ForeignKey("scrumTeam", on_delete=models.CASCADE, verbose_name="Scrum team: ", null=True, blank=True)
     scrumTeamRole = models.ForeignKey("scrumTeamRole", on_delete=models.CASCADE, verbose_name="Scrum team role: ", null=True, blank=True)
+    myskill = models.ManyToManyField('skills', blank=True)
 
     def __str__ (self):
         return self.firstName
