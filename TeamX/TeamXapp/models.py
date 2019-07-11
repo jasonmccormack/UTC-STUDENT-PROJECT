@@ -8,7 +8,7 @@ class allUsers(models.Model):
     scrumTeamRole = models.ForeignKey("scrumTeamRole", on_delete=models.CASCADE, verbose_name="Scrum team role: ", null=True, blank=True)
 
     def __str__ (self):
-        return self.firstName + " " + self.secondName
+        return self.firstName
 
     class Meta:
         verbose_name = "User"
@@ -29,7 +29,7 @@ class scrumTeam(models.Model):
         verbose_name_plural = 'Scrum Teams'
 
 
-class AdminAccounts(models.Model):
+class adminAccounts(models.Model):
     FirstName = models.CharField(max_length=50)
     LastName = models.CharField(max_length=50)
 
@@ -38,7 +38,7 @@ class AdminAccounts(models.Model):
         verbose_name_plural = 'Admin Accounts'
 
 
-class Skills(models.Model):
+class skills(models.Model):
     
     skill = models.CharField(max_length=30, blank=True)
 
