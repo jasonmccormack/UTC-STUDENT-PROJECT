@@ -10,7 +10,8 @@ class AllMembers(models.Model):
     workpattern = models.ForeignKey("WorkPattern", on_delete=models.CASCADE, verbose_name="Work Pattern: ", null=True, blank=True)
     hours_per_week = models.CharField(max_length=3, verbose_name="Hours Per Week: ", null=True, blank=True)
 
-
+    email = models.EmailField(null=True, blank=True)
+    avatar = models.ImageField(null=True, blank=True)
 
     def __str__ (self):
         return self.firstName
@@ -24,7 +25,7 @@ class ScrumTeam(models.Model):
     teamName = models.CharField(max_length=30, verbose_name="scrum team name: ")
     description = models.TextField(blank=True, null=True)
     scrum_master = models.ForeignKey("AllMembers", on_delete=models.CASCADE, null=True, blank=True)
-    #domain = models.ForeignKey('Domain', null=True, blank=True, on_delete=models.CASCADE)
+    domain = models.ForeignKey('Domain', null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__ (self):
         return self.teamName
@@ -76,3 +77,6 @@ class WorkPattern(models.Model):
     class Meta:
         verbose_name = 'Work Pattern'
         verbose_name_plural = 'Work Patterns'
+
+class Domain(models.Model):
+    domain_name = models.CharField(max_length=30, null=True, blank=True)
