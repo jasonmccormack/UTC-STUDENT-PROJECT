@@ -6,8 +6,9 @@ class AllMembers(models.Model):
     secondName = models.CharField(max_length=30, verbose_name="Second name: ") 
     scrumTeam = models.ForeignKey("scrumTeam", on_delete=models.CASCADE, verbose_name="Scrum team: ", null=True, blank=True)
     myskill = models.ManyToManyField('skills', blank=True, verbose_name="Skills")
-    WorkPattern = models.ForeignKey("Work_pattern", on_delete=models.CASCADE, verbose_name="Work Pattern: ", null=True, blank=True)
-    Hours_Per_Week = models.CharField(max_length=3, verbose_name="Hours Per Week: ", null=True, blank=True)
+    workpattern = models.ForeignKey("WorkPattern", on_delete=models.CASCADE, verbose_name="Work Pattern: ", null=True, blank=True)
+    hours_per_week = models.CharField(max_length=3, verbose_name="Hours Per Week: ", null=True, blank=True)
+
 
 
     def __str__ (self):
@@ -65,11 +66,11 @@ class ScrumTeamRole(models.Model):
         verbose_name = 'Scrum Team Role'
         verbose_name_plural = 'Scrum Team Roles'
 
-class Work_Pattern(models.Model):
-    WrkPttrn = models.CharField(max_length=30, verbose_name="Work Pattern:")
+class WorkPattern(models.Model):
+    wrkPttrn = models.CharField(max_length=30, verbose_name="Work Pattern:")
 
     def __str__(self):
-        return self.WrkPttrn
+        return self.wrkPttrn
 
     class Meta:
         verbose_name = 'Work Pattern'
