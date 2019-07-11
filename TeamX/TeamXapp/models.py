@@ -7,8 +7,9 @@ class allUsers(models.Model):
     scrumTeam = models.ForeignKey("scrumTeam", on_delete=models.CASCADE, verbose_name="Scrum team: ", null=True, blank=True)
     scrumTeamRole = models.ForeignKey("scrumTeamRole", on_delete=models.CASCADE, verbose_name="Scrum team role: ", null=True, blank=True)
 
-    def str(self):
-        return self.firstName
+    def __str__ (self):
+        return self.firstName + " " + self.secondName
+
     class Meta:
         verbose_name = "User"
         verbose_name_plural = "Users"
