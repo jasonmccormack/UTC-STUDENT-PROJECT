@@ -5,10 +5,11 @@ class allUsers(models.Model):
     firstName = models.CharField(max_length=30, verbose_name="First name: ")
     secondName = models.CharField(max_length=30, verbose_name="Second name: ")
     scrumTeam = models.ForeignKey("scrumTeam", on_delete=models.CASCADE, verbose_name="Scrum team: ", null=True, blank=True)
-    scrumTeamRole = models.ForeignKey("scrumTeam", on_delete=models.CASCADE, verbose_name="Scrum team role: ", null=True, blank=True)
+    scrumTeamRole = models.ForeignKey("scrumTeamRole", on_delete=models.CASCADE, verbose_name="Scrum team role: ", null=True, blank=True)
 
-    def str(self):
+    def __str__ (self):
         return self.firstName
+
     class Meta:
         verbose_name = "User"
         verbose_name_plural = "Users"
@@ -17,8 +18,8 @@ class allUsers(models.Model):
 class scrumTeam(models.Model):
     teamName = models.CharField(max_length=30, verbose_name="scrum team name: ")
     description = models.TextField(blank=True, null=True)
-    scrum_master = models.ForeignKey("Users", on_delete=models.CASCADE, null=True, blank=True)
-    domain = models.ForeignKey('Domain', null=True, blank=True, on_delete=models.CASCADE)
+    scrum_master = models.ForeignKey("allUsers", on_delete=models.CASCADE, null=True, blank=True)
+    #domain = models.ForeignKey('Domain', null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__ (self):
         return self.teamName
@@ -28,7 +29,7 @@ class scrumTeam(models.Model):
         verbose_name_plural = 'Scrum Teams'
 
 
-class AdminAccounts(models.Model):
+class adminAccounts(models.Model):
     FirstName = models.CharField(max_length=50)
     LastName = models.CharField(max_length=50)
 
@@ -37,7 +38,7 @@ class AdminAccounts(models.Model):
         verbose_name_plural = 'Admin Accounts'
 
 
-class Skills(models.Model):
+class skills(models.Model):
     
     skill = models.CharField(max_length=30, blank=True)
 
@@ -47,3 +48,13 @@ class Skills(models.Model):
     class Meta:
         verbose_name = 'Skill'
         verbose_name_plural = 'Skills'
+
+class scrumTeamRole(models.Model):
+    name = models.CharField(max_length=30, verbose_name="Scrum Team Role:")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Scrum Team Role'
+        verbose_name_plural = 'Scrum Team Roles'
