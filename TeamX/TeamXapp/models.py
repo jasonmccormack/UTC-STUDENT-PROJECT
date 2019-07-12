@@ -63,6 +63,7 @@ class Skills(models.Model):
 
 class ScrumTeamRole(models.Model):
     name = models.CharField(max_length=30, verbose_name="Scrum Team Role:")
+    job_role_group = models.ForeignKey("JobRoleGroup", null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
@@ -71,6 +72,15 @@ class ScrumTeamRole(models.Model):
         verbose_name = 'Job Role'
         verbose_name_plural = 'Job Roles'
 
+class JobRoleGroup(models.Model):
+    name = models.CharField(max_length=50, verbose_name="Role Group")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Job Role Group"
+        verbose_name_plural = "Job Role Groups"
 
 class ScrumTeamType(models.Model):
     name = models.CharField(max_length=30)
