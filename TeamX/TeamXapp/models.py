@@ -3,22 +3,22 @@ from django.db import models
 
 # Create your models here.
 class AllMembers(models.Model):
-    firstName = models.CharField(max_length=30, verbose_name="First name: ")
-    secondName = models.CharField(max_length=30, verbose_name="Second name: ")
-    scrumTeam = models.ForeignKey("ScrumTeam", on_delete=models.CASCADE, verbose_name="Scrum team: ", null=True, blank=True)
+    first_name = models.CharField(max_length=30, verbose_name="First name: ")
+    second_name = models.CharField(max_length=30, verbose_name="Second name: ")
+    scrum_team_name = models.ForeignKey("ScrumTeam", on_delete=models.CASCADE, verbose_name="Scrum team: ", null=True, blank=True)
     scrum_team_roles = models.ForeignKey("ScrumTeamRole", on_delete=models.CASCADE, verbose_name="Scrum Team Roles: ", null=True, blank=True)
-    myskill = models.ManyToManyField('skills', blank=True, verbose_name="Skills")
+    myskill = models.ManyToManyField('Skills', blank=True, verbose_name="Skills")
     workpattern = models.ForeignKey("WorkPattern", on_delete=models.CASCADE, verbose_name="Work Pattern: ", null=True, blank=True)
     hours_per_week = models.CharField(max_length=3, verbose_name="Hours Per Week: ", null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
     avatar = models.ImageField(null=True, blank=True)
 
     def __str__ (self):
-        return self.firstName
+        return self.first_name
 
     class Meta:
-        verbose_name = "User"
-        verbose_name_plural = "Users"
+        verbose_name = "Team Member"
+        verbose_name_plural = "Team Members"
 
 
 class ScrumTeam(models.Model):
@@ -27,6 +27,7 @@ class ScrumTeam(models.Model):
     current_focus = models.TextField(blank=True, null=True, verbose_name="Current Focus")
     scrum_master = models.ForeignKey("AllMembers", on_delete=models.CASCADE, null=True, blank=True, verbose_name="Scrum Master")
     team_status = models.ForeignKey("ScrumTeamStatus", on_delete=models.CASCADE, null=True, blank=True, verbose_name="Team Status")
+    #team_members = models.ManyToManyField('allmembers', blank=True, verbose_name="Team Members")
     domain = models.ForeignKey('Domain', null=True, blank=True, on_delete=models.CASCADE, verbose_name="Domain")
 
     def __str__ (self):
