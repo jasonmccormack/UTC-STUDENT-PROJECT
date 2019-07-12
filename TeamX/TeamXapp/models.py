@@ -27,7 +27,6 @@ class ScrumTeam(models.Model):
     current_focus = models.TextField(blank=True, null=True, verbose_name="Current Focus")
     scrum_master = models.ForeignKey("AllMembers", on_delete=models.CASCADE, null=True, blank=True, verbose_name="Scrum Master")
     team_status = models.ForeignKey("ScrumTeamStatus", on_delete=models.CASCADE, null=True, blank=True, verbose_name="Team Status")
-    #team_members = models.ManyToManyField('allmembers', blank=True, verbose_name="Team Members")
     domain = models.ForeignKey('Domain', null=True, blank=True, on_delete=models.CASCADE, verbose_name="Domain")
 
     def __str__ (self):
