@@ -12,6 +12,10 @@ class AllMembers(models.Model):
     hours_per_week = models.CharField(max_length=3, verbose_name="Hours Per Week: ", null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
     avatar = models.ImageField(null=True, blank=True)
+    leave_status = models.ForeignKey("LeaveStatus", on_delete=models.CASCADE, null=True, blank=True)
+    leave_start_time = models.ForeignKey("LeaveStartTime", on_delete=models.CASCADE, null=True, blank=True)
+    leave_end_time = models.ForeignKey("LeaveEndTime", on_delete=models.CASCADE, null=True, blank=True)
+    leave_note = models.ForeignKey("LeaveNote", on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__ (self):
         return self.first_name
@@ -114,3 +118,46 @@ class Domain(models.Model):
     class Meta:
         verbose_name = 'Domain'
         verbose_name_plural = 'Domains'
+
+
+class LeaveStatus(models.Model):
+    leave_status = models.CharField(max_length=30, null=True, blank=True)
+
+    def __str__(self):
+        return self.leave_status
+
+    class Meta:
+        verbose_name = 'Leave Status'
+
+
+class LeaveStartTime(models.Model):
+    # Temporary Charfield untill calander support added on front end
+    leave_start_time = models.CharField(max_length=30, null=True, blank=True)
+
+    def __str__(self):
+        return self.leave_start_time
+
+    class Meta:
+        verbose_name = 'Leave Start Time'
+
+
+class LeaveEndTime(models.Model):
+    # Temporary Charfield untill calander support added on front end
+    leave_end_time = models.CharField(max_length=30, null=True, blank=True)
+
+    def __str__(self):
+        return self.leave_end_time
+
+    class Meta:
+        verbose_name = 'Leave End Time'
+
+
+class LeaveNote(models.Model):
+    # Temporary Charfield untill calander support added on front end
+    leave_note = models.CharField(max_length=30, null=True, blank=True)
+
+    def __str__(self):
+        return self.leave_note
+
+    class Meta:
+        verbose_name = 'Leave Note'
