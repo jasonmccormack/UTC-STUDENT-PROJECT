@@ -37,18 +37,6 @@ class ScrumTeam(models.Model):
         verbose_name_plural = 'Scrum Teams'
 
 
-""" class AdminAccounts(models.Model):
-    FirstName = models.CharField(max_length=50)
-    LastName = models.CharField(max_length=50)
-
-    class Meta:
-        verbose_name = 'Admin Account'
-        verbose_name_plural = 'Admin Accounts'
-
-    def __str__(self):
-        return self.FirstName """
-
-
 class Skills(models.Model):
 
     skill = models.CharField(max_length=30, blank=True)
@@ -146,36 +134,3 @@ class LeaveCalendar(models.Model):
 
     def __str__(self):
         return str(self.team_member)
-
-
-""" class LeaveStartTime(models.Model):
-    # Temporary Charfield untill calander support added on front end
-    leave_start_time = models.CharField(max_length=30, null=True, blank=True)
-
-    def __str__(self):
-        return self.leave_start_time
-
-    class Meta:
-        verbose_name = 'Leave Start Time'
-
-
-class LeaveEndTime(models.Model):
-    # Temporary Charfield untill calander support added on front end
-    leave_end_time = models.CharField(max_length=30, null=True, blank=True)
-
-    def __str__(self):
-        return self.leave_end_time
-
-    class Meta:
-        verbose_name = 'Leave End Time'
-
-
-class LeaveNote(models.Model):
-    # Temporary Charfield untill calander support added on front end
-    leave_note = models.CharField(max_length=30, null=True, blank=True)
-
-    def __str__(self):
-        return self.leave_note
-
-    class Meta:
-        verbose_name = 'Leave Note' """
