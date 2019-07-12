@@ -3,22 +3,22 @@ from django.db import models
 
 # Create your models here.
 class AllMembers(models.Model):
-    firstName = models.CharField(max_length=30, verbose_name="First name: ")
-    secondName = models.CharField(max_length=30, verbose_name="Second name: ")
-    scrumTeam = models.ForeignKey("ScrumTeam", on_delete=models.CASCADE, verbose_name="Scrum team: ", null=True, blank=True)
+    first_name = models.CharField(max_length=30, verbose_name="First name: ")
+    second_name = models.CharField(max_length=30, verbose_name="Second name: ")
+    scrum_team_name = models.ForeignKey("ScrumTeam", on_delete=models.CASCADE, verbose_name="Scrum team: ", null=True, blank=True)
     scrum_team_roles = models.ForeignKey("ScrumTeamRole", on_delete=models.CASCADE, verbose_name="Scrum Team Roles: ", null=True, blank=True)
-    myskill = models.ManyToManyField('skills', blank=True, verbose_name="Skills")
-    workpattern = models.ForeignKey("WorkPattern", on_delete=models.CASCADE, verbose_name="Work Pattern: ", null=True, blank=True)
+    myskill = models.ManyToManyField('Skills', blank=True, verbose_name="Skills")
     hours_per_week = models.CharField(max_length=3, verbose_name="Hours Per Week: ", null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
     avatar = models.ImageField(null=True, blank=True)
-
+    
+   
     def __str__ (self):
-        return self.firstName
+        return self.first_name
 
     class Meta:
-        verbose_name = "User"
-        verbose_name_plural = "Users"
+        verbose_name = "Team Member"
+        verbose_name_plural = "Team Members"
 
 
 class ScrumTeam(models.Model):
@@ -37,7 +37,7 @@ class ScrumTeam(models.Model):
         verbose_name_plural = 'Scrum Teams'
 
 
-class AdminAccounts(models.Model):
+""" class AdminAccounts(models.Model):
     FirstName = models.CharField(max_length=50)
     LastName = models.CharField(max_length=50)
 
@@ -46,7 +46,7 @@ class AdminAccounts(models.Model):
         verbose_name_plural = 'Admin Accounts'
 
     def __str__(self):
-        return self.FirstName
+        return self.FirstName """
 
 
 class Skills(models.Model):
@@ -68,8 +68,8 @@ class ScrumTeamRole(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Scrum Team Role'
-        verbose_name_plural = 'Scrum Team Roles'
+        verbose_name = 'Job Role'
+        verbose_name_plural = 'Job Roles'
 
 
 class ScrumTeamType(models.Model):
@@ -114,3 +114,58 @@ class Domain(models.Model):
     class Meta:
         verbose_name = 'Domain'
         verbose_name_plural = 'Domains'
+
+
+class LeaveStatus(models.Model):
+    leave_status = models.CharField(max_length=30, null=True, blank=True)
+
+    def __str__(self):
+        return self.leave_status
+
+    class Meta:
+        verbose_name = 'Leave Type'
+        verbose_name_plural = 'Leave Type'
+
+
+class LeaveCalendar(models.Model):
+    team_member = models.ForeignKey("AllMembers", on_delete=models.PROTECT)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    total_hours = models.IntegerField()
+    leave_type = models.ForeignKey("LeaveStatus", on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.team_member)
+
+
+""" class LeaveStartTime(models.Model):
+    # Temporary Charfield untill calander support added on front end
+    leave_start_time = models.CharField(max_length=30, null=True, blank=True)
+
+    def __str__(self):
+        return self.leave_start_time
+
+    class Meta:
+        verbose_name = 'Leave Start Time'
+
+
+class LeaveEndTime(models.Model):
+    # Temporary Charfield untill calander support added on front end
+    leave_end_time = models.CharField(max_length=30, null=True, blank=True)
+
+    def __str__(self):
+        return self.leave_end_time
+
+    class Meta:
+        verbose_name = 'Leave End Time'
+
+
+class LeaveNote(models.Model):
+    # Temporary Charfield untill calander support added on front end
+    leave_note = models.CharField(max_length=30, null=True, blank=True)
+
+    def __str__(self):
+        return self.leave_note
+
+    class Meta:
+        verbose_name = 'Leave Note' """
