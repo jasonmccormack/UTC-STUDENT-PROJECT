@@ -8,15 +8,11 @@ class AllMembers(models.Model):
     scrum_team_name = models.ForeignKey("ScrumTeam", on_delete=models.CASCADE, verbose_name="Scrum team: ", null=True, blank=True)
     scrum_team_roles = models.ForeignKey("ScrumTeamRole", on_delete=models.CASCADE, verbose_name="Scrum Team Roles: ", null=True, blank=True)
     myskill = models.ManyToManyField('Skills', blank=True, verbose_name="Skills")
-    workpattern = models.ForeignKey("WorkPattern", on_delete=models.CASCADE, verbose_name="Work Pattern: ", null=True, blank=True)
     hours_per_week = models.CharField(max_length=3, verbose_name="Hours Per Week: ", null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
     avatar = models.ImageField(null=True, blank=True)
-    leave_status = models.ForeignKey("LeaveStatus", on_delete=models.CASCADE, null=True, blank=True)
-    leave_start_time = models.ForeignKey("LeaveStartTime", on_delete=models.CASCADE, null=True, blank=True)
-    leave_end_time = models.ForeignKey("LeaveEndTime", on_delete=models.CASCADE, null=True, blank=True)
-    leave_note = models.ForeignKey("LeaveNote", on_delete=models.CASCADE, null=True, blank=True)
-
+    
+   
     def __str__ (self):
         return self.first_name
 
@@ -41,7 +37,7 @@ class ScrumTeam(models.Model):
         verbose_name_plural = 'Scrum Teams'
 
 
-class AdminAccounts(models.Model):
+""" class AdminAccounts(models.Model):
     FirstName = models.CharField(max_length=50)
     LastName = models.CharField(max_length=50)
 
@@ -50,7 +46,7 @@ class AdminAccounts(models.Model):
         verbose_name_plural = 'Admin Accounts'
 
     def __str__(self):
-        return self.FirstName
+        return self.FirstName """
 
 
 class Skills(models.Model):
@@ -72,8 +68,8 @@ class ScrumTeamRole(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Scrum Team Role'
-        verbose_name_plural = 'Scrum Team Roles'
+        verbose_name = 'Job Role'
+        verbose_name_plural = 'Job Roles'
 
 
 class ScrumTeamType(models.Model):
@@ -127,10 +123,12 @@ class LeaveStatus(models.Model):
         return self.leave_status
 
     class Meta:
-        verbose_name = 'Leave Status'
+        verbose_name = 'Leave Type'
+        verbose_name_plural = 'Leave Type'
 
 
-class LeaveStartTime(models.Model):
+
+""" class LeaveStartTime(models.Model):
     # Temporary Charfield untill calander support added on front end
     leave_start_time = models.CharField(max_length=30, null=True, blank=True)
 
@@ -160,4 +158,4 @@ class LeaveNote(models.Model):
         return self.leave_note
 
     class Meta:
-        verbose_name = 'Leave Note'
+        verbose_name = 'Leave Note' """
