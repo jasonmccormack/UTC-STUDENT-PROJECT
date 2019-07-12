@@ -13,6 +13,7 @@ class TeamAdmin(admin.ModelAdmin):
 
 class ScrumTeamAdmin(admin.ModelAdmin):
     list_display = (['teamName', "scrum_master", "team_status", "team_type", "current_focus", "domain"])
+    list_filter = (['domain'])
 
 # Register your models here.
 admin.site.register(AllMembers, AllMemberAdmin)
