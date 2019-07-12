@@ -13,6 +13,8 @@ class AllMembers(models.Model):
     email = models.EmailField(null=True, blank=True)
     avatar = models.ImageField(null=True, blank=True)
     leave_status = models.ForeignKey("LeaveStatus", on_delete=models.CASCADE, null=True, blank=True)
+    leave_start_time = models.ForeignKey("LeaveStartTime", on_delete=models.CASCADE, null=True, blank=True)
+    leave_end_time = models.ForeignKey("LeaveEndTime", on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__ (self):
         return self.first_name
@@ -124,3 +126,23 @@ class LeaveStatus(models.Model):
 
     class Meta:
         verbose_name = 'Leave Status'
+
+class LeaveStartTime(models.Model):
+    # Temporary Charfield untill calander support added on front end
+    leave_start_time = models.CharField(max_length=30, null=True, blank=True)
+
+    def __str__(self):
+        return self.leave_start_time
+
+    class Meta:
+        verbose_name = 'Leave Start Time'
+
+class LeaveEndTime(models.Model):
+    # Temporary Charfield untill calander support added on front end
+    leave_end_time = models.CharField(max_length=30, null=True, blank=True)
+
+    def __str__(self):
+        return self.leave_end_time
+
+    class Meta:
+        verbose_name = 'Leave End Time'

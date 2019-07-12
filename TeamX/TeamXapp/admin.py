@@ -3,7 +3,7 @@ from .models import AllMembers, AdminAccounts, Skills, ScrumTeam, ScrumTeamRole,
 
 # Admin
 class AllMemberAdmin(admin.ModelAdmin):
-    list_display = (['first_name', 'second_name', 'scrum_team_name', 'leave_status'])
+    list_display = (['first_name', 'second_name', 'scrum_team_name', 'leave_status', 'leave_start_time', 'leave_end_time'])
     search_fields = (['scrum_team_name', 'first_name', 'second_name'])
     list_filter = (['scrum_team_name'])
 
