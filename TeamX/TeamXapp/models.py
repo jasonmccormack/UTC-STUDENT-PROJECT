@@ -12,6 +12,7 @@ class AllMembers(models.Model):
     hours_per_week = models.CharField(max_length=3, verbose_name="Hours Per Week: ", null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
     avatar = models.ImageField(null=True, blank=True)
+    leave_status = models.ForeignKey("LeaveStatus", on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__ (self):
         return self.first_name
@@ -114,3 +115,12 @@ class Domain(models.Model):
     class Meta:
         verbose_name = 'Domain'
         verbose_name_plural = 'Domains'
+
+class LeaveStatus(models.Model):
+    leave_status = models.CharField(max_length=30, null=True, blank=True)
+
+    def __str__(self):
+        return self.leave_status
+
+    class Meta:
+        verbose_name = 'Leave Status'
