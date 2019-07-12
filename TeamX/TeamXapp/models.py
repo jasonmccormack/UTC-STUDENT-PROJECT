@@ -127,6 +127,16 @@ class LeaveStatus(models.Model):
         verbose_name_plural = 'Leave Type'
 
 
+class LeaveCalendar(models.Model):
+    team_member = models.ForeignKey("AllMembers", on_delete=models.PROTECT)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    total_hours = models.IntegerField()
+    leave_type = models.ForeignKey("LeaveStatus", on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.team_member)
+
 
 """ class LeaveStartTime(models.Model):
     # Temporary Charfield untill calander support added on front end

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import AllMembers, Skills, ScrumTeam, ScrumTeamRole, LeaveStatus , ScrumTeamStatus, ScrumTeamType, Domain
+from .models import AllMembers, Skills, ScrumTeam, ScrumTeamRole, LeaveStatus , ScrumTeamStatus, ScrumTeamType, Domain, LeaveCalendar
 
 # Admin
 """ class AllMemberAdmin(admin.ModelAdmin):
@@ -11,7 +11,8 @@ class TeamAdmin(admin.ModelAdmin):
     list_display = (['name', 'scrum_master', 'status', 'current_focus',])
 
 class ScrumTeamAdmin(admin.ModelAdmin):
-    list_display = (['teamName', "scrum_master", "team_status", "team_type", "current_focus"])
+    list_display = (['teamName', "scrum_master", "team_status", "team_type", "current_focus", "domain"])
+    list_filter = (['domain'])
 
 # Register your models here.
 admin.site.register(AllMembers)
@@ -22,4 +23,5 @@ admin.site.register(ScrumTeamType)
 admin.site.register(ScrumTeamStatus)
 admin.site.register(Domain)
 admin.site.register(LeaveStatus)
+admin.site.register(LeaveCalendar)
 
