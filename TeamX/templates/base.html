@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" contents="SageTestManagment">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        {% include "./resources/favicon.html" %}
+        {% include "./css/style.css" %}
+        {% block header %}
+        {% endblock %}
+        <title>
+            {% block title %} Page Title {% endblock %}
+        </title>
+        {% include "./html/navbar.html" %}
+    </head>
+    <body>
+        {% block content %}
+            Body content
+        {% endblock %}
+
+        {% block content_2 %}
+            Body content_2
+        {% endblock %}
+        {% include "./html/footer.html" %}
+    </body>
+</html>
