@@ -17,8 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from TeamXapp.views import (
     base,
-    index,
-    landingpage
+    index
 )
 
 urlpatterns = [
