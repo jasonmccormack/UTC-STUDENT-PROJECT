@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User
 from .models import AllMembers
-from random import randint
+
 
 # Create your views here.
 def base(request):
@@ -8,20 +9,17 @@ def base(request):
 
 
 def login(request):
-    target_page = "./html/login.html"
+    target_page = "./registration/login.html"
     return render(request, target_page)
 
 
 def index(request, *args, **kwargs):
-    member_list = AllMembers.objects.all()
-    logged_in = bool(randint(0, 1))
-    context = {'logged_in' : logged_in, 'member_list' : member_list}
-    if logged_in:
+    if User.is_authenticated:
         target_page = './html/index.html'
-    elif not logged_in:
+    elif not User.is_authenticated:
         target_page = './html/landingpage.html'
 
-    return render(request, target_page, context)
+    return render(request, target_page)
 
 
 """ 

@@ -13,8 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.contrib.auth import views
+from django.urls import path, include
+from django.conf.urls import url
 from django.contrib import admin
-from django.urls import path
 from TeamXapp.views import (
     base,
     index,
@@ -22,8 +24,9 @@ from TeamXapp.views import (
 )
 
 urlpatterns = [
+    path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
-    path('login/', login),
+    #path(r'^accounts/login/$', auth_views.LoginView, name='login'),
     path('', index),
     path('', base),
 ]
