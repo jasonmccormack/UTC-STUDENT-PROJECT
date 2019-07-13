@@ -11,7 +11,7 @@ class TeamAdmin(admin.ModelAdmin):
     list_display = (['name', 'scrum_master', 'status', 'current_focus',])
 
 class ScrumTeamAdmin(admin.ModelAdmin):
-    list_display = (['teamName', "scrum_master", "team_status", "team_type", "current_focus", "domain"])
+    list_display = (['team_name', "scrum_master", "team_status", "team_type", "current_focus", "domain"])
     list_filter = (['domain'])
 
 class ScrumTeamRoleAdmin(admin.ModelAdmin):

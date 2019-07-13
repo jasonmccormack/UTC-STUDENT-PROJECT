@@ -23,7 +23,7 @@ class AllMembers(models.Model):
 
 
 class ScrumTeam(models.Model):
-    teamName = models.CharField(max_length=30, verbose_name="Scrum Team Name")
+    team_name = models.CharField(max_length=30, verbose_name="Scrum Team Name")
     team_type = models.ForeignKey("ScrumTeamType", on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Team Type")
     current_focus = models.TextField(blank=True, null=True, verbose_name="Current Focus")
     scrum_master = models.ForeignKey("AllMembers", on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Scrum Master")
@@ -31,7 +31,7 @@ class ScrumTeam(models.Model):
     domain = models.ForeignKey('Domain', null=True, blank=True, on_delete=models.SET_NULL, verbose_name="Domain")
 
     def __str__ (self):
-        return self.teamName
+        return self.team_name
 
     class Meta:
         verbose_name = 'Scrum Team'
@@ -94,10 +94,10 @@ class ScrumTeamStatus(models.Model):
 
 
 class WorkPattern(models.Model):
-    wrkPttrn = models.CharField(max_length=30, verbose_name="Work Pattern:")
+    workpattern = models.CharField(max_length=30, verbose_name="Work Pattern:")
 
     def __str__(self):
-        return self.wrkPttrn
+        return self.workpattern
 
     class Meta:
         verbose_name = 'Work Pattern'
