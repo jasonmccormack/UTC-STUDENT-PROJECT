@@ -4,9 +4,9 @@
 
 {% block content %}
 {% if user.is_authenticated %}
+  {% include "./navbar.html" %}
   Hi {{ user.username }}!
   <p><a href="{% url 'logout' %}">logout</a></p>
-  {% include "./footer.html" %}
 {% else %}
   {% include "./landingpage.html" %}
   <a href="{% url 'login' %}">login</a>
