@@ -6,5 +6,6 @@ If you do not trust the batch file feel free to read the code, it has been comme
 Dependencies:
 pip install Pillow
 pip install Django==2.2.3
+pip install pylint-django
 
 There is also a Start Project batch file but it will need to be edited for indvidual users to point to the correct directory.
