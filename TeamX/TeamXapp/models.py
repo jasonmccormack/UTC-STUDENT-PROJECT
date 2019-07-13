@@ -1,7 +1,24 @@
+#############################################
+# References
 from django.db import models
+#############################################
 
+###################################################################
+# Class - decribes an instanance of a :- 
+# AllMembers      - person who can be a memeber of a scrum team
+# ScrumTeam       - scrum developemnt team 
+# Skills          - skills relavant to a job role 
+# ScrumTeamRole   - job role a person has 
+# TODO rename class ScrumTeamRole to JobRole
+# JobRoleGroup    - common name to group of job roles 
+# ScrumTeamType   - type of agile development team
+# ScrumTeamStatus - scrum team status
+# Domain          - a funtional / developent area 
+# LeaveStatus     - type of leave request
+# TODO rename class LeaveStatus to LeaveType
+# LeaveCalendar   - team memebers leave request
+###################################################################                                          
 
-# Create your models here.
 class AllMembers(models.Model):
     WORK_PATTER_CHOICES = [('F' , 'FULL TIME') , ('P', 'PART TIME') , ('C', 'COMPRESSED HOURS')]
     first_name = models.CharField(max_length=30, verbose_name="First name")
@@ -16,7 +33,7 @@ class AllMembers(models.Model):
      
     def __str__ (self):
         return self.first_name + ' ' +  self.second_name
-
+               
     class Meta:
         verbose_name = "Team Member"
         verbose_name_plural = "Team Members"
@@ -91,17 +108,6 @@ class ScrumTeamStatus(models.Model):
     class Meta:
         verbose_name = 'Scrum Team Status'
         verbose_name_plural = 'Scrum Team Status'
-
-
-class WorkPattern(models.Model):
-    wrkPttrn = models.CharField(max_length=30, verbose_name="Work Pattern:")
-
-    def __str__(self):
-        return self.wrkPttrn
-
-    class Meta:
-        verbose_name = 'Work Pattern'
-        verbose_name_plural = 'Work Patterns'
 
 
 class Domain(models.Model):
