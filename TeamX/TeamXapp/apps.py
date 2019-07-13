@@ -1,5 +1,6 @@
 from django.apps import AppConfig
 
 
-class TeamxappConfig(AppConfig):
+class TeamXappConfig(AppConfig):
     name = 'TeamXapp'
+    verbose_name = 'TEAMX - Master files'

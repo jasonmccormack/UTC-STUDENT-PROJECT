@@ -17,7 +17,11 @@ from django.db import models
 # LeaveStatus     - type of leave request
 # TODO rename class LeaveStatus to LeaveType
 # LeaveCalendar   - team memebers leave request
-###################################################################                                          
+###################################################################                     
+
+class Config(models.Model):
+    class Meta:
+        verbose_name = 'Some other name'                     
 
 class AllMembers(models.Model):
     WORK_PATTER_CHOICES = [('F' , 'FULL TIME') , ('P', 'PART TIME') , ('C', 'COMPRESSED HOURS')]
