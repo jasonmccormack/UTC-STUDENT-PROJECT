@@ -2,10 +2,10 @@ from django.contrib import admin
 from .models import AllMembers, Skills, ScrumTeam, ScrumTeamRole, LeaveStatus , ScrumTeamStatus, ScrumTeamType, Domain, LeaveCalendar, JobRoleGroup
 
 # Admin
-""" class AllMemberAdmin(admin.ModelAdmin):
-    list_display = (['first_name', 'second_name', 'scrum_team_name', 'leave_status', 'leave_start_time', 'leave_end_time', 'leave_note'])
+class AllMemberAdmin(admin.ModelAdmin):
+    list_display = (['first_name', 'second_name', 'scrum_team_name', 'work_pattern', 'leave_status'])
     search_fields = (['scrum_team_name', 'first_name', 'second_name'])
-    list_filter = (['scrum_team_name', 'leave_status']) """
+    list_filter = (['scrum_team_name', 'leave_status'])
 
 class TeamAdmin(admin.ModelAdmin):
     list_display = (['name', 'scrum_master', 'status', 'current_focus',])

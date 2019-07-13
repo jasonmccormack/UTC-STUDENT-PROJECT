@@ -3,10 +3,10 @@ from django.db import models
 
 # Create your models here.
 class AllMembers(models.Model):
-    WORK_PATTER_CHOICES = [('F' , 'FULL TIME') , ('P', 'PART TIME') , ('C', 'COMPRESSED HOURS')]
+    WORK_PATTERN_CHOICES = [('F' , 'FULL TIME') , ('P', 'PART TIME') , ('C', 'COMPRESSED HOURS')]
     first_name = models.CharField(max_length=30, verbose_name="First name")
     second_name = models.CharField(max_length=30, verbose_name="Second name")
-    work_pattern = models.CharField(choices=WORK_PATTER_CHOICES, max_length=1 , default='F', null=True, blank=True)
+    work_pattern = models.CharField(choices=WORK_PATTERN_CHOICES, max_length=1 , default='F', null=True, blank=True)
     hours_per_week = models.IntegerField(verbose_name="Hours Per Week" , default=35) 
     email = models.EmailField(null=True, blank=True)
     scrum_team_name = models.ForeignKey("ScrumTeam", on_delete=models.CASCADE, verbose_name="Scrum team", null=True, blank=True)
@@ -23,7 +23,7 @@ class AllMembers(models.Model):
 
 
 class ScrumTeam(models.Model):
-    team_name = models.CharField(max_length=30, verbose_name="Scrum Team Name")
+    team_name = models.CharField(max_length=30, verbose_name="Scrum Team Name", null=True, blank=True)
     team_type = models.ForeignKey("ScrumTeamType", on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Team Type")
     current_focus = models.TextField(blank=True, null=True, verbose_name="Current Focus")
     scrum_master = models.ForeignKey("AllMembers", on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Scrum Master")
@@ -94,10 +94,10 @@ class ScrumTeamStatus(models.Model):
 
 
 class WorkPattern(models.Model):
-    workpattern = models.CharField(max_length=30, verbose_name="Work Pattern:")
+    work_pattern = models.CharField(max_length=30, verbose_name="Work Pattern:")
 
     def __str__(self):
-        return self.workpattern
+        return self.work_pattern
 
     class Meta:
         verbose_name = 'Work Pattern'
