@@ -3,18 +3,19 @@ from django.db import models
 
 # Create your models here.
 class AllMembers(models.Model):
-    first_name = models.CharField(max_length=30, verbose_name="First name: ")
-    second_name = models.CharField(max_length=30, verbose_name="Second name: ")
-    scrum_team_name = models.ForeignKey("ScrumTeam", on_delete=models.CASCADE, verbose_name="Scrum team: ", null=True, blank=True)
-    scrum_team_roles = models.ForeignKey("ScrumTeamRole", on_delete=models.CASCADE, verbose_name="Scrum Team Roles: ", null=True, blank=True)
-    myskill = models.ManyToManyField('Skills', blank=True, verbose_name="Skills")
-    hours_per_week = models.CharField(max_length=3, verbose_name="Hours Per Week: ", null=True, blank=True)
+    WORK_PATTER_CHOICES = [('F' , 'FULL TIME') , ('P', 'PART TIME') , ('C', 'COMPRESSED HOURS')]
+    first_name = models.CharField(max_length=30, verbose_name="First name")
+    second_name = models.CharField(max_length=30, verbose_name="Second name")
+    work_pattern = models.CharField(choices=WORK_PATTER_CHOICES, max_length=1 , default='F', null=True, blank=True)
+    hours_per_week = models.IntegerField(verbose_name="Hours Per Week" , default=35) 
     email = models.EmailField(null=True, blank=True)
+    scrum_team_name = models.ForeignKey("ScrumTeam", on_delete=models.CASCADE, verbose_name="Scrum team", null=True, blank=True)
+    scrum_team_roles = models.ForeignKey("ScrumTeamRole", on_delete=models.CASCADE, verbose_name="Roles", null=True, blank=True)
+    myskill = models.ManyToManyField('Skills', blank=True, verbose_name="Skills")
     avatar = models.ImageField(null=True, blank=True)
-    
-   
+     
     def __str__ (self):
-        return self.first_name
+        return self.first_name + ' ' +  self.second_name
 
     class Meta:
         verbose_name = "Team Member"
@@ -22,7 +23,7 @@ class AllMembers(models.Model):
 
 
 class ScrumTeam(models.Model):
-    teamName = models.CharField(max_length=30, verbose_name="scrum team name: ")
+    teamName = models.CharField(max_length=30, verbose_name="Scrum Team Name")
     team_type = models.ForeignKey("ScrumTeamType", on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Team Type")
     current_focus = models.TextField(blank=True, null=True, verbose_name="Current Focus")
     scrum_master = models.ForeignKey("AllMembers", on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Scrum Master")
