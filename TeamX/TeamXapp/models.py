@@ -3,31 +3,32 @@ from django.db import models
 
 # Create your models here.
 class AllMembers(models.Model):
-    firstName = models.CharField(max_length=30, verbose_name="First name: ")
-    secondName = models.CharField(max_length=30, verbose_name="Second name: ")
-    scrumTeam = models.ForeignKey("ScrumTeam", on_delete=models.CASCADE, verbose_name="Scrum team: ", null=True, blank=True)
-    scrum_team_roles = models.ForeignKey("ScrumTeamRole", on_delete=models.CASCADE, verbose_name="Scrum Team Roles: ", null=True, blank=True)
-    myskill = models.ManyToManyField('skills', blank=True, verbose_name="Skills")
-    workpattern = models.ForeignKey("WorkPattern", on_delete=models.CASCADE, verbose_name="Work Pattern: ", null=True, blank=True)
-    hours_per_week = models.CharField(max_length=3, verbose_name="Hours Per Week: ", null=True, blank=True)
+    WORK_PATTER_CHOICES = [('F' , 'FULL TIME') , ('P', 'PART TIME') , ('C', 'COMPRESSED HOURS')]
+    first_name = models.CharField(max_length=30, verbose_name="First name")
+    second_name = models.CharField(max_length=30, verbose_name="Second name")
+    work_pattern = models.CharField(choices=WORK_PATTER_CHOICES, max_length=1 , default='F', null=True, blank=True)
+    hours_per_week = models.IntegerField(verbose_name="Hours Per Week" , default=35) 
     email = models.EmailField(null=True, blank=True)
+    scrum_team_name = models.ForeignKey("ScrumTeam", on_delete=models.CASCADE, verbose_name="Scrum team", null=True, blank=True)
+    scrum_team_roles = models.ForeignKey("ScrumTeamRole", on_delete=models.CASCADE, verbose_name="Roles", null=True, blank=True)
+    myskill = models.ManyToManyField('Skills', blank=True, verbose_name="Skills")
     avatar = models.ImageField(null=True, blank=True)
-
+     
     def __str__ (self):
-        return self.firstName
+        return self.first_name + ' ' +  self.second_name
 
     class Meta:
-        verbose_name = "User"
-        verbose_name_plural = "Users"
+        verbose_name = "Team Member"
+        verbose_name_plural = "Team Members"
 
 
 class ScrumTeam(models.Model):
-    teamName = models.CharField(max_length=30, verbose_name="scrum team name: ")
-    team_type = models.ForeignKey("ScrumTeamType", on_delete=models.CASCADE, null=True, blank=True, verbose_name="Team Type")
+    teamName = models.CharField(max_length=30, verbose_name="Scrum Team Name")
+    team_type = models.ForeignKey("ScrumTeamType", on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Team Type")
     current_focus = models.TextField(blank=True, null=True, verbose_name="Current Focus")
-    scrum_master = models.ForeignKey("AllMembers", on_delete=models.CASCADE, null=True, blank=True, verbose_name="Scrum Master")
-    team_status = models.ForeignKey("ScrumTeamStatus", on_delete=models.CASCADE, null=True, blank=True, verbose_name="Team Status")
-    domain = models.ForeignKey('Domain', null=True, blank=True, on_delete=models.CASCADE, verbose_name="Domain")
+    scrum_master = models.ForeignKey("AllMembers", on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Scrum Master")
+    team_status = models.ForeignKey("ScrumTeamStatus", on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Team Status")
+    domain = models.ForeignKey('Domain', null=True, blank=True, on_delete=models.SET_NULL, verbose_name="Domain")
 
     def __str__ (self):
         return self.teamName
@@ -35,18 +36,6 @@ class ScrumTeam(models.Model):
     class Meta:
         verbose_name = 'Scrum Team'
         verbose_name_plural = 'Scrum Teams'
-
-
-class AdminAccounts(models.Model):
-    FirstName = models.CharField(max_length=50)
-    LastName = models.CharField(max_length=50)
-
-    class Meta:
-        verbose_name = 'Admin Account'
-        verbose_name_plural = 'Admin Accounts'
-
-    def __str__(self):
-        return self.FirstName
 
 
 class Skills(models.Model):
@@ -63,14 +52,24 @@ class Skills(models.Model):
 
 class ScrumTeamRole(models.Model):
     name = models.CharField(max_length=30, verbose_name="Scrum Team Role:")
+    job_role_group = models.ForeignKey("JobRoleGroup", null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
 
     class Meta:
-        verbose_name = 'Scrum Team Role'
-        verbose_name_plural = 'Scrum Team Roles'
+        verbose_name = 'Job Role'
+        verbose_name_plural = 'Job Roles'
 
+class JobRoleGroup(models.Model):
+    name = models.CharField(max_length=50, verbose_name="Role Group")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Job Role Group"
+        verbose_name_plural = "Job Role Groups"
 
 class ScrumTeamType(models.Model):
     name = models.CharField(max_length=30)
@@ -114,3 +113,25 @@ class Domain(models.Model):
     class Meta:
         verbose_name = 'Domain'
         verbose_name_plural = 'Domains'
+
+
+class LeaveStatus(models.Model):
+    leave_status = models.CharField(max_length=30, null=True, blank=True)
+
+    def __str__(self):
+        return self.leave_status
+
+    class Meta:
+        verbose_name = 'Leave Type'
+        verbose_name_plural = 'Leave Type'
+
+
+class LeaveCalendar(models.Model):
+    team_member = models.ForeignKey("AllMembers", on_delete=models.PROTECT)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    total_hours = models.IntegerField()
+    leave_type = models.ForeignKey("LeaveStatus", on_delete=models.SET_NULL, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.team_member)
