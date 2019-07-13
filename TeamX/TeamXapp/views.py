@@ -8,19 +8,20 @@ def base(request):
 
 
 def login(request):
-
     target_page = "./html/login.html"
     return render(request, target_page)
 
 
 def index(request, *args, **kwargs):
+    member_list = AllMembers.objects.all()
     logged_in = bool(randint(0,1))
-    if logged_in == True:
+    context = {'logged_in' : logged_in, 'member_list' : member_list}
+    if logged_in:
         target_page = './html/index.html'
-    elif logged_in == False:
+    elif not logged_in:
         target_page = './html/landingpage.html'
 
-    return render(request, target_page)
+    return render(request, target_page, context)
 
 
 """ 

@@ -4,4 +4,9 @@
 {% endblock %}
 {% block content %}
 <p>Test body text</p>
+<br>
+{% for members in member_list %}
+<p>{{AllMembers.first_name}}</p>
+{% endfor %}
+{{ logged_in }}
 {% endblock %}
