@@ -14,7 +14,7 @@ def login(request):
 
 def index(request, *args, **kwargs):
     member_list = AllMembers.objects.all()
-    logged_in = bool(randint(0,1))
+    logged_in = bool(randint(0, 1))
     context = {'logged_in' : logged_in, 'member_list' : member_list}
     if logged_in:
         target_page = './html/index.html'
