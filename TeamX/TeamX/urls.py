@@ -23,7 +23,7 @@ from TeamXapp.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/' login),
+    path('login/', login),
     path('', index),
     path('', base),
 ]
