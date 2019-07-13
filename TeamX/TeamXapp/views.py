@@ -7,6 +7,12 @@ def base(request):
     return render(request, "/base.html")
 
 
+def login(request):
+
+    target_page = "./html/login.html"
+    return render(request, target_page)
+
+
 def index(request, *args, **kwargs):
     logged_in = bool(randint(0,1))
     if logged_in == True:

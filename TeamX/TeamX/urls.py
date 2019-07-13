@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from TeamXapp.views import (
     base,
-    index
+    index,
+    login
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login/' login),
     path('', index),
     path('', base),
 ]
