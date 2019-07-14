@@ -40,8 +40,6 @@ def contact(request, *args, **kwargs):
     target_page = './html/contact.html'
     return render(request,  target_page )        
 
-
-
 """ 
 def landingpage(request):
     return render(request, "./html/landingpage.html") """
