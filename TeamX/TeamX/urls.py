@@ -25,6 +25,7 @@ from TeamXapp.views import (
     about,
     help,
     contact,
+    dashboard,
 )
 
 urlpatterns = [
@@ -36,4 +37,5 @@ urlpatterns = [
     path('about/'     , about        , name ='about'), 
     path('help/'      , help         , name ='help'), 
     path('contact/'   , contact      , name ='contact'), 
+    path('dashboard/' , dashboard    , name ='dashboard'), 
 ]
