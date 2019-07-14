@@ -30,6 +30,7 @@ from TeamXapp.views import (
 
 urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/login', login),
     path('admin/', admin.site.urls),
     path('', index),
     path('', base),
