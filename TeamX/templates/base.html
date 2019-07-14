@@ -21,7 +21,9 @@
         <title>
             {% block title %} Page Title {% endblock %}
         </title>
+        {% if user.is_authenticated %}
         {% include "./html/navbar.html" %}
+        {% endif %}
     </head>
     <body>
         {% block content %}
