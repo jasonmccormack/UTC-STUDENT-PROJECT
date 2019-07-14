@@ -190,8 +190,8 @@ body{
             <li>
                 <a href="/">Home</a>
             </li>
-            <li>
-                <a href="{% url 'about' %}">About</a>
+			<li>
+                <a href="{% url 'dashboard' %}">Dashboard</a>
             </li>
             <li>
                 <a href="#!">Management</a>
@@ -200,18 +200,18 @@ body{
                         <a href="{% url 'admin:index' %}">Admin</a>
                     </li>
                     <li>
-                        <a href="{% url 'dashboard' %}">Dashboard</a>
-                    </li>
-                    <li>
                         <a href="{% url 'all_teams' %}">All Teams</a>
                     </li>
-                    <li>
+                    {% comment %} <li>
                        <a href="#!">Job Roles</a>
-                    </li>
+                    </li> {% endcomment %}
                 </ul>
             </li>
             <li>
                 <a href="{% url 'contact' %}">Contact</a>
+            </li>
+			<li>
+                <a href="{% url 'about' %}">About</a>
             </li>
             <li>
                 <a href="{% url 'help' %}">Help</a>
