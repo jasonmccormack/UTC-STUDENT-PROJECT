@@ -20,7 +20,11 @@ from django.contrib import admin
 from TeamXapp.views import (
     base,
     index,
-    login
+    login,
+    all_teams,
+    about,
+    help,
+    contact,
 )
 
 urlpatterns = [
@@ -28,4 +32,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
     path('', base),
+    path('all_teams/' , all_teams    , name ='all_teams'), 
+    path('about/'     , about        , name ='about'), 
+    path('help/'      , help         , name ='help'), 
+    path('contact/'   , contact      , name ='contact'), 
 ]

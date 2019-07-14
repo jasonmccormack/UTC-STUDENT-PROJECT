@@ -30,8 +30,8 @@ class AllMembers(models.Model):
     work_pattern = models.CharField(choices=WORK_PATTERN_CHOICES, max_length=1, default='F', null=True, blank=True)
     hours_per_week = models.IntegerField(verbose_name="Hours Per Week" , default=35) 
     email = models.EmailField(null=True, blank=True)
-    scrum_team_name = models.ForeignKey("ScrumTeam", on_delete=models.CASCADE, verbose_name="Scrum team", null=True, blank=True)
-    scrum_team_roles = models.ForeignKey("ScrumTeamRole", on_delete=models.CASCADE, verbose_name="Roles", null=True, blank=True)
+    scrum_team_name = models.ForeignKey("ScrumTeam", on_delete=models.PROTECT, verbose_name="Scrum team", null=True, blank=True)
+    scrum_team_roles = models.ForeignKey("ScrumTeamRole", on_delete=models.DO_NOTHING, verbose_name="Roles", null=True, blank=True)
     myskill = models.ManyToManyField('Skills', blank=True, verbose_name="Skills")
     avatar = models.ImageField(null=True, blank=True)
 
@@ -45,11 +45,11 @@ class AllMembers(models.Model):
 
 class ScrumTeam(models.Model):
     team_name = models.CharField(max_length=30, verbose_name="Scrum Team Name", null=True, blank=True)
-    team_type = models.ForeignKey("ScrumTeamType", on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Team Type")
+    team_type = models.ForeignKey("ScrumTeamType", on_delete=models.PROTECT, null=True, blank=True, verbose_name="Team Type")
     current_focus = models.TextField(blank=True, null=True, verbose_name="Current Focus")
-    scrum_master = models.ForeignKey("AllMembers", on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Scrum Master")
-    team_status = models.ForeignKey("ScrumTeamStatus", on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Team Status")
-    domain = models.ForeignKey('Domain', null=True, blank=True, on_delete=models.SET_NULL, verbose_name="Domain")
+    scrum_master = models.ForeignKey("AllMembers", on_delete=models.DO_NOTHING, null=True, blank=True, verbose_name="Scrum Master")
+    team_status = models.ForeignKey("ScrumTeamStatus", on_delete=models.DO_NOTHING, null=True, blank=True, verbose_name="Team Status")
+    domain = models.ForeignKey('Domain', null=True, blank=True, on_delete=models.DO_NOTHING, verbose_name="Domain")
 
     def __str__ (self):
         return self.team_name
@@ -73,7 +73,7 @@ class Skills(models.Model):
 
 class ScrumTeamRole(models.Model):
     name = models.CharField(max_length=30, verbose_name="Scrum Team Role:")
-    job_role_group = models.ForeignKey("JobRoleGroup", null=True, blank=True, on_delete=models.SET_NULL)
+    job_role_group = models.ForeignKey("JobRoleGroup", null=True, blank=True, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.name
@@ -137,11 +137,11 @@ class LeaveStatus(models.Model):
 
 
 class LeaveCalendar(models.Model):
-    team_member = models.ForeignKey("AllMembers", on_delete=models.PROTECT)
+    team_member = models.ForeignKey("AllMembers", on_delete=models.DO_NOTHING)
     start_date = models.DateField()
     end_date = models.DateField()
     total_hours = models.IntegerField()
-    leave_type = models.ForeignKey("LeaveStatus", on_delete=models.SET_NULL, null=True, blank=True)
+    leave_type = models.ForeignKey("LeaveStatus", on_delete=models.DO_NOTHING, null=True, blank=True)
 
     def __str__(self):
         return str(self.team_member)
