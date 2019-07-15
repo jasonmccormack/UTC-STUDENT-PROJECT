@@ -13,6 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.http import HttpResponse, HttpResponseNotFound
+from django.conf.urls import handler404, handler500
 from django.contrib.auth import views
 from django.urls import path, include
 from django.conf.urls import url
@@ -25,7 +27,7 @@ from TeamXapp.views import (
     about,
     help,
     contact,
-    dashboard,
+    dashboard
 )
 
 urlpatterns = [
@@ -40,3 +42,6 @@ urlpatterns = [
     path('contact/'   , contact      , name ='contact'), 
     path('dashboard/' , dashboard    , name ='dashboard'), 
 ]
+
+handler500 = 'TeamXapp.views.error_500'
+handler404 = 'TeamXapp.views.error_404'

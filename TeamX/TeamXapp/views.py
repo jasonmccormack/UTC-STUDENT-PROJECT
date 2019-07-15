@@ -28,17 +28,21 @@ def all_teams(request, *args, **kwargs):
     target_page = './html/all_teams.html'
     return render(request, target_page, context) 
 
+
 def about(request, *args, **kwargs):
     target_page = './html/about.html'
     return render(request,  target_page ) 
+
 
 def help(request, *args, **kwargs):
     target_page = './html/help.html'
     return render(request,  target_page )     
 
+
 def contact(request, *args, **kwargs):
     target_page = './html/contact.html'
     return render(request,  target_page )        
+
 
 def dashboard(request, *args, **kwargs):
     team_count = ScrumTeam.objects.all().count()
@@ -51,6 +55,10 @@ def dashboard(request, *args, **kwargs):
     target_page = './html/dashboard.html'
     return render(request,  target_page , context)     
 
-""" 
-def landingpage(request):
-    return render(request, "./html/landingpage.html") """
+
+def error_404(request, exception):
+        return render(request,'./html/error_404.html')
+
+
+def error_500(request):
+        return render(request,'./html/error_500.html')
