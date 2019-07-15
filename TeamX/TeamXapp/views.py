@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from .models import AllMembers, ScrumTeam
+from .forms import ContactForm
 
 
 # Create your views here.
@@ -40,6 +42,26 @@ def help(request, *args, **kwargs):
 
 
 def contact(request, *args, **kwargs):
+    def get(self, request):
+        form = ContactForm()
+        return render(request, self.template_name, {'form' : form})
+
+    def post(self, request):
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            text = form.cleaned_data['post']
+        args = {'form' : form, 'text' : text}
+        return render(request, self.template_name, args)
+
+    def sendmail(subject, body, sender):
+        send_mail(
+            'Subject here',
+            'Here is the message.',
+            'sageteamxofficial@gmail.com',
+            ['sageteamxofficial@gmail.com'],
+            fail_silently=False,
+        )
+
     target_page = './html/contact.html'
     return render(request,  target_page )        
 
@@ -62,3 +84,4 @@ def error_404(request, exception):
 
 def error_500(request):
         return render(request,'./html/error_500.html')
+

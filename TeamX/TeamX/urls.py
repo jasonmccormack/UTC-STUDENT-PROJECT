@@ -16,6 +16,7 @@ Including another URLconf
 #from django.http import HttpResponse, HttpResponseNotFound
 from django.conf.urls import handler404, handler500
 from django.contrib.auth import views
+from django.core.mail import send_mail
 from django.urls import path, include
 from django.conf.urls import url
 from django.contrib import admin
