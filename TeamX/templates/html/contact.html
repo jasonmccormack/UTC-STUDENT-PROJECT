@@ -1,7 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>TeamX | Contact</title>
+{% extends 'base.html' %}
+{% block header %}
     <meta charset="UTF-8">
     {% load static %}
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,8 +11,9 @@
 	<link rel="stylesheet" type="text/css" href="{% static "./vendor/select2/select2.min.css" %}">
 	<link rel="stylesheet" type="text/css" href="{% static "./css/util.css" %}">
 	<link rel="stylesheet" type="text/css" href="{% static "./css/contactmain.css" %}">
-</head>
-<body>
+{% endblock %}
+{% block title %}TeamX | Contact{% endblock %}
+{% block content %}
 	<div class="contact1">
 		<div class="container-contact1">
 			<div class="contact1-pic js-tilt" data-tilt>
@@ -67,15 +66,13 @@
 			scale: 1.1
 		})
 	</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	<script>
+  		window.dataLayer = window.dataLayer || [];
+  		function gtag(){dataLayer.push(arguments);}
+  		gtag('js', new Date());
 
-  gtag('config', 'UA-23581568-13');
-</script>
+ 	 	gtag('config', 'UA-23581568-13');
+	</script>
 
 	<script src="{% static "./js/main.js" %}"></script>
-
-</body>
-</html>
+{% endblock %}
