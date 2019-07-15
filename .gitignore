@@ -17,3 +17,10 @@ TeamX/TeamXapp/migrations/__pycache__/0008_auto_20190711_1534.cpython-37.pyc
 TeamX/TeamXapp/migrations/__pycache__/0009_auto_20190711_1539.cpython-37.pyc
 TeamX/TeamXapp/migrations/__pycache__/0010_auto_20190711_1550.cpython-37.pyc
 TeamX/TeamXapp/migrations/__pycache__/__init__.cpython-37.pyc
+TeamX/TeamX/__pycache__/__init__.cpython-37.pyc
+TeamX/TeamX/__pycache__/settings.cpython-37.pyc
+TeamX/TeamX/__pycache__/urls.cpython-37.pyc
+TeamX/TeamXapp/__pycache__/__init__.cpython-37.pyc
+TeamX/TeamXapp/__pycache__/admin.cpython-37.pyc
+TeamX/TeamXapp/__pycache__/models.cpython-37.pyc
+TeamX/TeamXapp/__pycache__/views.cpython-37.pyc
