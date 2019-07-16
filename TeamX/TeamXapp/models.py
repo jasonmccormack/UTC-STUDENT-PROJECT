@@ -65,6 +65,7 @@ class ScrumTeam(models.Model):
 class Skills(models.Model):
 
     skill = models.CharField(max_length=30, blank=True)
+    description = models.TextField(blank=True, null=True, verbose_name="Description")
 
     def __str__(self):
         return self.skill
@@ -77,6 +78,7 @@ class Skills(models.Model):
 class ScrumTeamRole(models.Model):
     name = models.CharField(max_length=30, verbose_name="Scrum Team Role:")
     job_role_group = models.ForeignKey("JobRoleGroup", null=True, blank=True, on_delete=models.DO_NOTHING)
+    description = models.TextField(blank=True, null=True, verbose_name="Description")
 
     def __str__(self):
         return self.name
@@ -99,6 +101,7 @@ class JobRoleGroup(models.Model):
 
 class ScrumTeamType(models.Model):
     name = models.CharField(max_length=30)
+    description = models.TextField(blank=True, null=True, verbose_name="Description")
 
     def __str__(self):
         return self.name
@@ -110,6 +113,7 @@ class ScrumTeamType(models.Model):
 
 class ScrumTeamStatus(models.Model):
     name = models.CharField(max_length=30)
+    description = models.TextField(blank=True, null=True, verbose_name="Description")
 
     def __str__(self):
         return self.name
@@ -133,6 +137,7 @@ class Domain(models.Model):
 
 class LeaveStatus(models.Model):
     leave_status = models.CharField(max_length=30, null=True, blank=True)
+    description = models.TextField(blank=True, null=True, verbose_name="Description")
 
     def __str__(self):
         return self.leave_status
