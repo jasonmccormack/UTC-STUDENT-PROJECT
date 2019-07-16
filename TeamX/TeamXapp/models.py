@@ -1,6 +1,7 @@
 #############################################
 # References
 from django.db import models
+from django.core.exceptions import ValidationError
 #############################################
 
 ###################################################################
@@ -41,6 +42,14 @@ class AllMembers(models.Model):
     def __str__ (self):
         return self.first_name + ' ' +  self.second_name
 
+    def clean(self):
+        if self.hours_per_week>35:
+            raise ValidationError("Hours worked per week cannot be more than 35!")
+        elif self.work_pattern=='FULL TIME' and self.hours_per_week<35:
+            raise ValidationError("You need to work 35 hours per week to be able to be full time!")
+        elif self.work_pattern=='PART TIME' and self.hours_per_week==35:
+            raise ValidationError("You cannot work 35 hours as part time!")
+
     class Meta:
         verbose_name = "Team Member"
         verbose_name_plural = "Team Members"
@@ -65,6 +74,7 @@ class ScrumTeam(models.Model):
 class Skills(models.Model):
 
     skill = models.CharField(max_length=30, blank=True)
+    description = models.TextField(blank=True, null=True, verbose_name="Description")
 
     def __str__(self):
         return self.skill
@@ -77,6 +87,7 @@ class Skills(models.Model):
 class ScrumTeamRole(models.Model):
     name = models.CharField(max_length=30, verbose_name="Scrum Team Role:")
     job_role_group = models.ForeignKey("JobRoleGroup", null=True, blank=True, on_delete=models.DO_NOTHING)
+    description = models.TextField(blank=True, null=True, verbose_name="Description")
 
     def __str__(self):
         return self.name
@@ -99,6 +110,7 @@ class JobRoleGroup(models.Model):
 
 class ScrumTeamType(models.Model):
     name = models.CharField(max_length=30)
+    description = models.TextField(blank=True, null=True, verbose_name="Description")
 
     def __str__(self):
         return self.name
@@ -110,6 +122,7 @@ class ScrumTeamType(models.Model):
 
 class ScrumTeamStatus(models.Model):
     name = models.CharField(max_length=30)
+    description = models.TextField(blank=True, null=True, verbose_name="Description")
 
     def __str__(self):
         return self.name
@@ -133,6 +146,7 @@ class Domain(models.Model):
 
 class LeaveStatus(models.Model):
     leave_status = models.CharField(max_length=30, null=True, blank=True)
+    description = models.TextField(blank=True, null=True, verbose_name="Description")
 
     def __str__(self):
         return self.leave_status
