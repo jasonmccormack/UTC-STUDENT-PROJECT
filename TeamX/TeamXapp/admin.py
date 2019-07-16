@@ -3,9 +3,9 @@ from .models import AllMembers, Skills, ScrumTeam, ScrumTeamRole, LeaveStatus , 
 
 # Admin
 class AllMemberAdmin(admin.ModelAdmin):
-    list_display = (['first_name', 'second_name', 'scrum_team_name', 'work_pattern', 'leave_status'])
+    list_display = (['first_name', 'second_name', 'scrum_team_name', 'work_pattern'])
     search_fields = (['scrum_team_name', 'first_name', 'second_name'])
-    list_filter = (['scrum_team_name', 'leave_status'])
+    list_filter = (['scrum_team_name'])
 
 class TeamAdmin(admin.ModelAdmin):
     list_display = (['name', 'scrum_master', 'status', 'current_focus',])
@@ -19,7 +19,7 @@ class ScrumTeamRoleAdmin(admin.ModelAdmin):
     list_filter = (["job_role_group"])
 
 # Register your models here.
-admin.site.register(AllMembers)
+admin.site.register(AllMembers, AllMemberAdmin)
 admin.site.register(ScrumTeam, ScrumTeamAdmin)
 admin.site.register(Skills)
 admin.site.register(ScrumTeamRole, ScrumTeamRoleAdmin)
