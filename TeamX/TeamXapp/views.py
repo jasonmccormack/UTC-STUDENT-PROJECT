@@ -78,6 +78,15 @@ def dashboard(request, *args, **kwargs):
     return render(request,  target_page , context)     
 
 
+def team_details(request, pk, *args, **kwargs):    
+    team_stuff = ScrumTeam.objects.get(pk=pk)
+    people_stuff = AllMembers.objects.filter(scrum_team_name=pk)
+    context = {"team"   : team_stuff,
+               "all_people" : people_stuff}
+    target_page = './html/a_team.html'
+    return render(request,  target_page , context)
+
+    
 def error_404(request, exception):
         return render(request,'./html/error_404.html')
 

@@ -28,7 +28,8 @@ from TeamXapp.views import (
     about,
     help,
     contact,
-    dashboard
+    dashboard,
+    team_details
 )
 
 urlpatterns = [
@@ -41,7 +42,8 @@ urlpatterns = [
     path('about/'     , about        , name ='about'), 
     path('help/'      , help         , name ='help'), 
     path('contact/'   , contact      , name ='contact'), 
-    path('dashboard/' , dashboard    , name ='dashboard'), 
+    path('dashboard/' , dashboard    , name ='dashboard'),
+    url(r'(?P<pk>\d+)/$', team_details , name = 'team_details'), 
 ]
 
 handler500 = 'TeamXapp.views.error_500'
