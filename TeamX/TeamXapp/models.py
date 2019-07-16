@@ -1,23 +1,24 @@
 #############################################
 # References
 from django.db import models
+from django.core.exceptions import ValidationError
 #############################################
 
 ###################################################################
-# Class - decribes an instanance of a :- 
+# Class - decribes an instanance of a :-
 # AllMembers      - person who can be a memeber of a scrum team
-# ScrumTeam       - scrum developemnt team 
-# Skills          - skills relavant to a job role 
-# ScrumTeamRole   - job role a person has 
+# ScrumTeam       - scrum developemnt team
+# Skills          - skills relavant to a job role
+# ScrumTeamRole   - job role a person has
 # TODO rename class ScrumTeamRole to JobRole
-# JobRoleGroup    - common name to group of job roles 
+# JobRoleGroup    - common name to group of job roles
 # ScrumTeamType   - type of agile development team
 # ScrumTeamStatus - scrum team status
-# Domain          - a funtional / developent area 
+# Domain          - a funtional / developent area
 # LeaveStatus     - type of leave request
 # TODO rename class LeaveStatus to LeaveType
 # LeaveCalendar   - team memebers leave request
-###################################################################                     
+###################################################################
 
 class Config(models.Model):
     class Meta:
@@ -25,19 +26,29 @@ class Config(models.Model):
 
 
 class AllMembers(models.Model):
-    WORK_PATTERN_CHOICES = [('FULL TIME' , 'FULL TIME') , ('PART TIME', 'PART TIME') , ('COMPRESSED HOURS', 'COMPRESSED HOURS')]
+    IN_TEAM_CHOICES = [('YES', 'Yes') , ('NO', 'No')]
+    WORK_PATTERN_CHOICES = [('FULL TIME' , 'Full time') , ('PART TIME', 'Part time') , ('COMPRESSED HOURS', 'Compressed hours')]
     first_name = models.CharField(max_length=30, verbose_name="First name")
     second_name = models.CharField(max_length=30, verbose_name="Second name")
     work_pattern = models.CharField(choices=WORK_PATTERN_CHOICES, max_length=16, default='FULL TIME', null=True, blank=True)
-    hours_per_week = models.IntegerField(verbose_name="Hours Per Week" , default=35) 
+    hours_per_week = models.IntegerField(verbose_name="Hours Per Week" , default=35)
     email = models.EmailField(null=True,blank=True)
-    scrum_team_name = models.ForeignKey("ScrumTeam", on_delete=models.PROTECT, verbose_name="Scrum team", null=True, blank=True)
+    scrum_team_name = models.ForeignKey("ScrumTeam", on_delete=models.PROTECT, verbose_name="Scrum teams", null=True, blank=True)
     scrum_team_roles = models.ForeignKey("ScrumTeamRole", on_delete=models.DO_NOTHING, verbose_name="Roles", null=True, blank=True)
     myskill = models.ManyToManyField('Skills', blank=True, verbose_name="Skills")
     avatar = models.ImageField(null=True, blank=True)
+    in_team = models.CharField(choices=IN_TEAM_CHOICES, max_length=3, default='NO', null=True, blank=True, verbose_name="In team")
 
     def __str__ (self):
-        return self.first_name + ' ' +  self.second_name 
+        return self.first_name + ' ' +  self.second_name
+
+    def clean(self):
+        if self.hours_per_week>35:
+            raise ValidationError("Hours worked per week cannot be more than 35!")
+        elif self.work_pattern=='FULL TIME' and self.hours_per_week<35:
+            raise ValidationError("You need to work 35 hours per week to be able to be full time!")
+        elif self.work_pattern=='PART TIME' and self.hours_per_week==35:
+            raise ValidationError("You cannot work 35 hours as part time!")
 
     class Meta:
         verbose_name = "Team Member"
@@ -63,6 +74,7 @@ class ScrumTeam(models.Model):
 class Skills(models.Model):
 
     skill = models.CharField(max_length=30, blank=True)
+    description = models.TextField(blank=True, null=True, verbose_name="Description")
 
     def __str__(self):
         return self.skill
@@ -75,6 +87,7 @@ class Skills(models.Model):
 class ScrumTeamRole(models.Model):
     name = models.CharField(max_length=30, verbose_name="Scrum Team Role:")
     job_role_group = models.ForeignKey("JobRoleGroup", null=True, blank=True, on_delete=models.DO_NOTHING)
+    description = models.TextField(blank=True, null=True, verbose_name="Description")
 
     def __str__(self):
         return self.name
@@ -97,6 +110,7 @@ class JobRoleGroup(models.Model):
 
 class ScrumTeamType(models.Model):
     name = models.CharField(max_length=30)
+    description = models.TextField(blank=True, null=True, verbose_name="Description")
 
     def __str__(self):
         return self.name
@@ -108,6 +122,7 @@ class ScrumTeamType(models.Model):
 
 class ScrumTeamStatus(models.Model):
     name = models.CharField(max_length=30)
+    description = models.TextField(blank=True, null=True, verbose_name="Description")
 
     def __str__(self):
         return self.name
@@ -119,6 +134,7 @@ class ScrumTeamStatus(models.Model):
 
 class Domain(models.Model):
     domain_name = models.CharField(max_length=30, null=True, blank=True)
+    description = models.TextField(blank=True, null=True, verbose_name="Description")
 
     def __str__(self):
         return self.domain_name
@@ -129,7 +145,8 @@ class Domain(models.Model):
 
 
 class LeaveStatus(models.Model):
-    leave_status = models.CharField(max_length=30, null=True, blank=True)
+    leave_status = models.CharField(max_length=31, null=True, blank=True)
+    description = models.TextField(blank=True, null=True, verbose_name="Description")
 
     def __str__(self):
         return self.leave_status
