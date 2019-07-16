@@ -25,14 +25,14 @@ class Config(models.Model):
 
 
 class AllMembers(models.Model):
-    IN_TEAM_CHOICES = [('YES', 'YES') , ('NO', 'NO')]
-    WORK_PATTERN_CHOICES = [('FULL TIME' , 'FULL TIME') , ('PART TIME', 'PART TIME') , ('COMPRESSED HOURS', 'COMPRESSED HOURS')]
+    IN_TEAM_CHOICES = [('YES', 'Yes') , ('NO', 'No')]
+    WORK_PATTERN_CHOICES = [('FULL TIME' , 'Full time') , ('PART TIME', 'Part time') , ('COMPRESSED HOURS', 'Compressed hours')]
     first_name = models.CharField(max_length=30, verbose_name="First name")
     second_name = models.CharField(max_length=30, verbose_name="Second name")
     work_pattern = models.CharField(choices=WORK_PATTERN_CHOICES, max_length=16, default='FULL TIME', null=True, blank=True)
     hours_per_week = models.IntegerField(verbose_name="Hours Per Week" , default=35)
     email = models.EmailField(null=True,blank=True)
-    scrum_team_name = models.ForeignKey("ScrumTeam", on_delete=models.PROTECT, verbose_name="Scrum team", null=True, blank=True)
+    scrum_team_name = models.ForeignKey("ScrumTeam", on_delete=models.PROTECT, verbose_name="Scrum teams", null=True, blank=True)
     scrum_team_roles = models.ForeignKey("ScrumTeamRole", on_delete=models.DO_NOTHING, verbose_name="Roles", null=True, blank=True)
     myskill = models.ManyToManyField('Skills', blank=True, verbose_name="Skills")
     avatar = models.ImageField(null=True, blank=True)
