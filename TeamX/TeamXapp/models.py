@@ -23,21 +23,22 @@ class Config(models.Model):
     class Meta:
         verbose_name = 'Some other name'
 
+
 class AllMembers(models.Model):
-    WORK_PATTERN_CHOICES = [('F' , 'FULL TIME') , ('P', 'PART TIME') , ('C', 'COMPRESSED HOURS')]
+    WORK_PATTERN_CHOICES = [('FULL TIME' , 'FULL TIME') , ('PART TIME', 'PART TIME') , ('COMPRESSED HOURS', 'COMPRESSED HOURS')]
     first_name = models.CharField(max_length=30, verbose_name="First name")
     second_name = models.CharField(max_length=30, verbose_name="Second name")
-    work_pattern = models.CharField(choices=WORK_PATTERN_CHOICES, max_length=1, default='F', null=True, blank=True)
+    work_pattern = models.CharField(choices=WORK_PATTERN_CHOICES, max_length=16, default='FULL TIME', null=True, blank=True)
     hours_per_week = models.IntegerField(verbose_name="Hours Per Week" , default=35) 
-    email = models.EmailField(null=True, blank=True)
+    email = models.EmailField(null=True,blank=True)
     scrum_team_name = models.ForeignKey("ScrumTeam", on_delete=models.PROTECT, verbose_name="Scrum team", null=True, blank=True)
     scrum_team_roles = models.ForeignKey("ScrumTeamRole", on_delete=models.DO_NOTHING, verbose_name="Roles", null=True, blank=True)
     myskill = models.ManyToManyField('Skills', blank=True, verbose_name="Skills")
     avatar = models.ImageField(null=True, blank=True)
 
     def __str__ (self):
-        return self.first_name + ' ' +  self.second_name
-               
+        return self.first_name + ' ' +  self.second_name 
+
     class Meta:
         verbose_name = "Team Member"
         verbose_name_plural = "Team Members"
@@ -82,6 +83,7 @@ class ScrumTeamRole(models.Model):
         verbose_name = 'Job Role'
         verbose_name_plural = 'Job Roles'
 
+
 class JobRoleGroup(models.Model):
     name = models.CharField(max_length=50, verbose_name="Role Group")
 
@@ -91,6 +93,7 @@ class JobRoleGroup(models.Model):
     class Meta:
         verbose_name = "Job Role Group"
         verbose_name_plural = "Job Role Groups"
+
 
 class ScrumTeamType(models.Model):
     name = models.CharField(max_length=30)
