@@ -145,7 +145,7 @@ class Domain(models.Model):
 
 
 class LeaveStatus(models.Model):
-    leave_status = models.CharField(max_length=30, null=True, blank=True)
+    leave_status = models.CharField(max_length=31, null=True, blank=True)
     description = models.TextField(blank=True, null=True, verbose_name="Description")
 
     def __str__(self):
