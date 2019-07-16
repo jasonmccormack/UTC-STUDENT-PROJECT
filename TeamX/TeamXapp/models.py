@@ -1,6 +1,7 @@
 #############################################
 # References
 from django.db import models
+from django.core.exceptions import ValidationError
 #############################################
 
 ###################################################################
@@ -40,6 +41,14 @@ class AllMembers(models.Model):
 
     def __str__ (self):
         return self.first_name + ' ' +  self.second_name
+
+    def clean(self):
+        if self.hours_per_week>35:
+            raise ValidationError("Hours worked per week cannot be more than 35!")
+        elif self.work_pattern=='FULL TIME' and self.hours_per_week<35:
+            raise ValidationError("You need to work 35 hours per week to be able to be full time!")
+        elif self.work_pattern=='PART TIME' and self.hours_per_week==35:
+            raise ValidationError("You cannot work 35 hours as part time!")
 
     class Meta:
         verbose_name = "Team Member"
