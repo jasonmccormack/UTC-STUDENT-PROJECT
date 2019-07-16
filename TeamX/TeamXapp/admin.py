@@ -18,6 +18,9 @@ class ScrumTeamRoleAdmin(admin.ModelAdmin):
     list_display = (["name", "job_role_group"])
     list_filter = (["job_role_group"])
 
+class DomainAdmin():
+    list_display = (["domain_name", "description"])
+
 # Register your models here.
 admin.site.register(AllMembers, AllMemberAdmin)
 admin.site.register(ScrumTeam, ScrumTeamAdmin)
@@ -25,7 +28,7 @@ admin.site.register(Skills)
 admin.site.register(ScrumTeamRole, ScrumTeamRoleAdmin)
 admin.site.register(ScrumTeamType)
 admin.site.register(ScrumTeamStatus)
-admin.site.register(Domain)
+admin.site.register(Domain, DomainAdmin)
 admin.site.register(LeaveStatus)
 admin.site.register(LeaveCalendar)
 admin.site.register(JobRoleGroup)
