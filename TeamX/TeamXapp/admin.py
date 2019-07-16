@@ -19,7 +19,7 @@ class ScrumTeamRoleAdmin(admin.ModelAdmin):
     list_filter = (["job_role_group"])
 
 # Register your models here.
-admin.site.register(AllMembers)
+admin.site.register(AllMembers, AllMemberAdmin)
 admin.site.register(ScrumTeam, ScrumTeamAdmin)
 admin.site.register(Skills)
 admin.site.register(ScrumTeamRole, ScrumTeamRoleAdmin)
