@@ -1,7 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>TeamX | Contact</title>
+{% extends 'base.html' %}
+{% block header %}
     <meta charset="UTF-8">
     {% load static %}
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,18 +11,21 @@
 	<link rel="stylesheet" type="text/css" href="{% static "./vendor/select2/select2.min.css" %}">
 	<link rel="stylesheet" type="text/css" href="{% static "./css/util.css" %}">
 	<link rel="stylesheet" type="text/css" href="{% static "./css/contactmain.css" %}">
-</head>
-<body>
+{% endblock %}
+{% block title %}TeamX | Contact{% endblock %}
+{% block content %}
 	<div class="contact1">
 		<div class="container-contact1">
 			<div class="contact1-pic js-tilt" data-tilt>
 				<img src="{% static "images/img-01.png" %}" alt="IMG">
 			</div>
 
-			<form class="contact1-form validate-form">
+			<form class="contact1-form validate-form" method="POST">
 				<span class="contact1-form-title">
 					Get in touch
 				</span>
+				{% csrf_token %}
+				<h1>{{ text }}</h1>
 
 				<div class="wrap-input1 validate-input" data-validate = "Name is required">
 					<input class="input1" type="text" name="name" placeholder="Name">
@@ -47,7 +48,7 @@
                 </div>
                 
 				<div class="container-contact1-form-btn">
-					<button class="contact1-form-btn">
+					<button class="contact1-form-btn" type="submit">
 						<span>
 							Send Email
 							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
@@ -67,15 +68,13 @@
 			scale: 1.1
 		})
 	</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	<script>
+  		window.dataLayer = window.dataLayer || [];
+  		function gtag(){dataLayer.push(arguments);}
+  		gtag('js', new Date());
 
-  gtag('config', 'UA-23581568-13');
-</script>
+ 	 	gtag('config', 'UA-23581568-13');
+	</script>
 
 	<script src="{% static "./js/main.js" %}"></script>
-
-</body>
-</html>
+{% endblock %}

@@ -16,6 +16,7 @@ Including another URLconf
 #from django.http import HttpResponse, HttpResponseNotFound
 from django.conf.urls import handler404, handler500
 from django.contrib.auth import views
+from django.core.mail import send_mail
 from django.urls import path, include
 from django.conf.urls import url
 from django.contrib import admin
@@ -27,7 +28,8 @@ from TeamXapp.views import (
     about,
     help,
     contact,
-    dashboard
+    dashboard,
+    team_details
 )
 
 urlpatterns = [
@@ -40,7 +42,8 @@ urlpatterns = [
     path('about/'     , about        , name ='about'), 
     path('help/'      , help         , name ='help'), 
     path('contact/'   , contact      , name ='contact'), 
-    path('dashboard/' , dashboard    , name ='dashboard'), 
+    path('dashboard/' , dashboard    , name ='dashboard'),
+    url(r'(?P<pk>\d+)/$', team_details , name = 'team_details'), 
 ]
 
 handler500 = 'TeamXapp.views.error_500'
