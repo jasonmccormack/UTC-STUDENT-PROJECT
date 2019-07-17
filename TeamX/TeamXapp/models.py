@@ -166,3 +166,4 @@ class LeaveCalendar(models.Model):
 
     def __str__(self):
         return str(self.team_member)
+
