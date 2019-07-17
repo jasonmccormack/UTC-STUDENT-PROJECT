@@ -8,6 +8,7 @@ body, html {
   margin: 0;
   font: 400 15px/1.8 "Lato", sans-serif;
   color: #777;
+  background-color: #EEEEEE;
 }
 
 .bgimg-1, .bgimg-2, .bgimg-3 {
@@ -26,7 +27,7 @@ body, html {
 .caption {
   position: absolute;
   left: 0;
-  top: 25%;
+  top: 15%;
   width: 100%;
   text-align: center;
   color: #000;
@@ -59,7 +60,14 @@ h3 {
 a {
   color: black;
   text-decoration: none; /* no underline */
+ }
+
+.responsive {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
 }
+
 </style>
 </head>
 <body data-gr-c-s-loaded="true">
@@ -68,13 +76,10 @@ a {
   <div class="caption">
     {% comment %} <span class="border"></span><br> {% endcomment %}
     <span class="border">TeamX</span><BR>
-    <span class="border">Scrum Team Management</span><br>
-    <span class="border2"><a href="accounts/login/">LOGIN</a></a></span>
+    <span class="border">Scrum Team Management</span></br></br>
+    <span class="border2"><a href="accounts/login/">LOGIN</a></a></span></br></br>
+    <img src="static\images\picture1.png" class="responsive">
   </div>
 </div>
 
-<!--
-<p style="padding:5px 15px">.</p>
--->
-
-</body><span class="gr__tooltip"><span class="gr__tooltip-content"></span><i class="gr__tooltip-logo"></i><span class="gr__triangle"></span></span></html>
+{% comment %} </body><span class="gr__tooltip"><span class="gr__tooltip-content"></span><i class="gr__tooltip-logo"></i><span class="gr__triangle"></span></span></html> {% endcomment %}
