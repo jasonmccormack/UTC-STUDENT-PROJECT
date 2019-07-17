@@ -35,6 +35,7 @@ class LeaveStatusAdmin(admin.ModelAdmin):
 
 class LeaveCalendarAdmin(admin.ModelAdmin):
     list_display = (["team_member", "start_date", "end_date", "leave_type", "note"])
+    list_filter = (["team_member"])
 
 
 # Register your models here.
