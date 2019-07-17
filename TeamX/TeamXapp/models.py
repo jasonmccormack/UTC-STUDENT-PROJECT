@@ -162,6 +162,7 @@ class LeaveCalendar(models.Model):
     end_date = models.DateField()
     total_hours = models.IntegerField()
     leave_type = models.ForeignKey("LeaveStatus", on_delete=models.DO_NOTHING, null=True, blank=True)
+    note = models.TextField(blank=True, null=True, verbose_name="Leave Note")
 
     def __str__(self):
         return str(self.team_member)

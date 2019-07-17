@@ -33,6 +33,9 @@ class ScrumTeamStatusAdmin(admin.ModelAdmin):
 class LeaveStatusAdmin(admin.ModelAdmin):
     list_display = (["leave_status", "description"])
 
+class LeaveCalendarAdmin(admin.ModelAdmin):
+    list_display = (["team_member", "start_date", "end_date", "leave_type", "note"])
+
 
 # Register your models here.
 admin.site.register(AllMembers, AllMemberAdmin)
@@ -43,5 +46,5 @@ admin.site.register(ScrumTeamType, ScrumTeamTypeAdmin)
 admin.site.register(ScrumTeamStatus, ScrumTeamStatusAdmin)
 admin.site.register(Domain, DomainAdmin)
 admin.site.register(LeaveStatus, LeaveStatusAdmin)
-admin.site.register(LeaveCalendar)
+admin.site.register(LeaveCalendar, LeaveCalendarAdmin)
 admin.site.register(JobRoleGroup)
