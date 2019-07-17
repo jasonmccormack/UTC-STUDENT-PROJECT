@@ -31,20 +31,46 @@
         <tr>
             <th class="">Name</th>
             <th class="">Work Pattern</th>
-            <th class="">Total Hours</th>
+            <th class="">Hours Work Per Week</th>
             <th class="">Role</th>
         </tr>
 
         {% for people in all_people %}
             <tr>
-                <td class="">{{people.first_name}} {{people.second_name}}</a></td> 
+                <td class="">{{people.first_name}} {{people.second_name}}</td> 
                 <td class="">{{people.work_pattern}}</td>
                 <td class="">{{people.hours_per_week}}</td>
                 <td class="">{{people.scrum_team_roles}}</td>
+
             </tr>       
         {% endfor %}             
     </table>
 
+
+<div class="TeamMembers">LEAVE CALENDAR</div>
+   <table class="blueTable">
+        <tr>
+            <th class="">Name</th>
+            <th class="">Total Leave Hours</th>
+            <th class="">Start_date</th>
+            <th class="">End Date</th>
+            <th class="">Leave Type</th>
+        </tr>
+        {% for people in all_people %}
+            {% for leave in all_leave %}
+                {% if leave.team_member.id ==  people.id %}
+                    <tr>
+                        <td class="">{{leave.team_member}}</td> 
+                        <td class="">{{leave.total_hours}}</td>   
+                        <td class="">{{leave.start_date}}</td>
+                        <td class="">{{leave.end_date}}</td>
+                        <td class="">{{leave.leave_type}}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+ 
+ 
     <style>
     .ScrumTeam{
         font-size: 24px;
@@ -109,5 +135,3 @@
     }
     </style>
 {% endblock%}
-
-
