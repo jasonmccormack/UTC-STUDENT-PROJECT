@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
-from .models import AllMembers, ScrumTeam, LeaveCalendar
+from .models import *
 from .forms import ContactForm
 
 
@@ -67,24 +67,37 @@ def contact(request, *args, **kwargs):
 
 
 def dashboard(request, *args, **kwargs):
+
     team_count = ScrumTeam.objects.all().count()
-    team_active = ScrumTeam.objects.filter(team_status = 1).count()
+    active_scrum_teams = ScrumTeam.objects.filter(team_status = 1).count()
     people_count = AllMembers.objects.all().count()
+    on_hold_scrum_teams = ScrumTeam.objects.filter(team_status = 2).count()
+    sprint_zero_scrum_teams = ScrumTeam.objects.filter(team_status = 3).count()
+    
+    domain_count = Domain.objects.all().count()
+
     context = {"team_count"   : team_count,
                "people_count" : people_count,
-               "team_active"  : team_active 
+               "active_scrum_teams"  : active_scrum_teams,
+               "on_hold_scrum_teams" : on_hold_scrum_teams,
+               "sprint_zero_scrum_teams" : sprint_zero_scrum_teams,
+               "domain_count" : domain_count
                }
+
     target_page = './html/dashboard.html'
     return render(request,  target_page , context)     
 
 
-def team_details(request, pk, *args, **kwargs):    
+def team_details(request, pk, *args, **kwargs):
+
     team_stuff = ScrumTeam.objects.get(pk=pk)
     people_stuff = AllMembers.objects.filter(scrum_team_name=pk)
     leave_stuff = LeaveCalendar.objects.all()
+
     context = {"team"       : team_stuff,
                "all_people" : people_stuff,
                "all_leave"  : leave_stuff}
+
     target_page = './html/a_team.html'
     return render(request,  target_page , context)
 
