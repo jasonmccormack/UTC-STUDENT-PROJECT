@@ -24,6 +24,11 @@
         {% if user.is_authenticated %}
         {% include "./html/navbar.html" %}
         {% endif %}
+        <style type='text/css'>
+            body {
+                padding: 70px 0px 0px 0px;
+            }
+        </style>
     </head>
     <body>
         {% block content %}
