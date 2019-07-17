@@ -6,6 +6,6 @@
   <p><a href="{% url 'logout' %}">logout</a></p>
 {% else %}
   {% include "./landingpage.html" %}
-  <a href="{% url 'login' %}">login</a>
+  {% comment %} <a href="{% url 'login' %}">login</a> {% endcomment %}
 {% endif %}
 {% endblock %}
