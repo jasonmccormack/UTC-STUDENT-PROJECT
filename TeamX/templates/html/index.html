@@ -1,6 +1,11 @@
-{% extends "base.html" %}
-{% block title %}Home Page{% endblock %}
-{% include "header.html" %}
+{% extends 'base.html' %}
+{% block title %}TeamX | Dashboard{% endblock %}
 {% block content %}
-<p>Test body text</p>
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+  <p><a href="{% url 'logout' %}">logout</a></p>
+{% else %}
+  {% include "./landingpage.html" %}
+  <a href="{% url 'login' %}">login</a>
+{% endif %}
 {% endblock %}
