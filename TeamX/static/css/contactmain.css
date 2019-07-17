@@ -38,11 +38,11 @@
 
 body, html {
 	height: 100%;
-	font-family: Montserrat-Regular, sans-serif;
+	/* font-family: Montserrat-Regular, sans-serif; */
 }
 
 /*---------------------------------------------*/
-a {
+/* a {
 	font-family: Montserrat-Regular;
 	font-size: 14px;
 	line-height: 1.7;
@@ -52,11 +52,11 @@ a {
 	-webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
-}
+} */
 
-a:focus {
+/* a:focus {
 	outline: none !important;
-}
+} */
 
 a:hover {
 	text-decoration: none;
@@ -133,15 +133,14 @@ iframe {
   min-height: 100%;
   padding: 15px;
 
-  background: #009bff;
-  background: -webkit-linear-gradient(left, #0072ff, #00c6ff);
-  background: -o-linear-gradient(left, #0072ff, #00c6ff);
-  background: -moz-linear-gradient(left, #0072ff, #00c6ff);
-  background: linear-gradient(left, #0072ff, #00c6ff);
+  background:   white;
+  background: -webkit-linear-gradient(left, white,white);
+  background: -o-linear-gradient(left, white, white);
+  background: linear-gradient(left, white, white);
 
   display: -webkit-box;
   display: -webkit-flex;
-  display: -moz-box;
+  display: -moz-box;  
   display: -ms-flexbox;
   display: flex;
   flex-wrap: wrap;
