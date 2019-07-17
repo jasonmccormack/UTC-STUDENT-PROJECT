@@ -1,5 +1,22 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<h2> ABOUT PAGE TODO </h2>
+<style>
+  .abouttitle {
+    text-align: center;
+    padding-top: 10px;
+    text-style: bold;
+  }
+  .aboutinfo {
+    text-align: center;
+    padding-top: 10px;
+  }
+</style>
+<h2 class="abouttitle"> About TeamX </h2>
+<hr>
+<p class="aboutinfo">
+  TeamX version: 1.26<br>
+  Python version: 3.7<br>
+  Django version: 2.2<br>
+  Database engine: SQLite3<br>
+</p>
 {% endblock%}
