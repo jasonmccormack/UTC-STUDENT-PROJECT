@@ -1,9 +1,24 @@
 {% extends 'base.html' %}
-
 {% block content %}
 <h2> DASHBOARD TODO </h2>
 <h3> Examples </h3>
-<h5> Total Scrum Teams {{ team_count }}<h5>
-<h5> Total Active Scrum Teams {{ team_active }}<h5>
+<h5> Total<h5>
+
 <h5> Total People      {{ people_count }}<h5>
+<hr>
+<h4> Total Scrum Teams {{ team_count }}:</h4>
+<h5> - Total Active: {{ active_scrum_teams }}<h5>
+<h5> - Total On-Hold: {{ on_hold_scrum_team }}</h5>
+<h5> - Total Sprint Zero: {{sprint_zero_scrum_teams}}</h5>
+<hr>
+<h4> Domains {{ domain_count }}:</h4>
+{% for people in all_people %}
+    {% for leave in all_leave %}
+        {% if leave.team_member.id ==  people.id %}
+            <h5> - Total Active: {{ active_scrum_teams }}<h5>
+            <h5> - Total Sprint Zero: {{sprint_zero_scrum_teams}}</h5>
+            <h5> - Total On-Hold: {{ on_hold_scrum_team }}</h5>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
 {% endblock%}

@@ -1,5 +1,28 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<h2> ABOUT PAGE TODO </h2>
+<style>
+  .abouttitle {
+    text-align: center;
+    padding-top: 10px;
+    text-style: bold;
+  }
+  .aboutinfo {
+    text-align: center;
+    padding-top: 10px;
+  }
+</style>
+<h2 class="abouttitle"> About TeamX </h2>
+<hr>
+<p class="aboutinfo">
+  TeamX version: 1.26<br>
+  Python version: 3.7<br>
+  Django version: 2.2<br>
+  Database engine: SQLite3<br>
+</p>
+<h2>
+    Admin
+</h2>
+<p>
+    - As an admin you can create groups and add users. As part of adding users you can also change the users password.  If you head into the Master files, Domains, you can add domain names, and add descriptions to them. Under Job role groups you can add and delete the groups using the 'Add job role group' and delete them by selecting 'Delete selected job groups' from the  action drop down menu. Similiar to the Job role groups, under job roles you can add and remove  job roles with the same method used above. Under the header leave type, as an admin you can create leave status and add a description to it.   As an admin you can add a leave calender. Under this header you can also see all the notes the users have left, as well as remove them. Underneath  the table there is a filter. By selecting a user's name it will filter the  table.  The next action you can make as admin is adding and removing status's to the Scrum teams. Following scrum team status is Scrum team type, there  are three main types arleady listed, and can be removed or added to the  table by the admin.  As an admin you can also add a scrum team, this will allow you to see the team status, team type, current focus and domain.  Following the Scrum team header, there is a Skill header, as an admin you  can add remove skills.
+</p>
 {% endblock%}
