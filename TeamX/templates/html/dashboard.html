@@ -12,13 +12,8 @@
 <h5> - Total Sprint Zero: {{sprint_zero_scrum_teams}}</h5>
 <hr>
 <h4> Domains {{ domain_count }}:</h4>
-{% for people in all_people %}
-    {% for leave in all_leave %}
-        {% if leave.team_member.id ==  people.id %}
-            <h5> - Total Active: {{ active_scrum_teams }}<h5>
-            <h5> - Total Sprint Zero: {{sprint_zero_scrum_teams}}</h5>
-            <h5> - Total On-Hold: {{ on_hold_scrum_team }}</h5>
-        {% endif %}
-    {% endfor %}
-{% endfor %}
+<hr>
+<h4>Total Active People: {{ active_people_count }}</h4>
+<h4>Total Unactive People: {{ unactive_people_count }}</h4>
+<h4>Total People on Leave: {{ leave_people_count }}</h4>
 {% endblock%}

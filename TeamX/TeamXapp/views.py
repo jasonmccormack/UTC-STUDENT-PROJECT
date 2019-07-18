@@ -116,6 +116,10 @@ def dashboard(request, *args, **kwargs):
     people_count = AllMembers.objects.all().count()
     on_hold_scrum_teams = ScrumTeam.objects.filter(team_status = 2).count()
     sprint_zero_scrum_teams = ScrumTeam.objects.filter(team_status = 3).count()
+    unactive_people_count = AllMembers.objects.filter(scrum_team_name = None).count()
+    # Did this because python wouldn't let me use "is not None" or "!= None"
+    active_people_count = AllMembers.objects.all().count() - AllMembers.objects.filter(scrum_team_name = None).count()
+    leave_people_count = LeaveCalendar.objects.all().count()
     
     domain_count = Domain.objects.all().count()
 
@@ -124,7 +128,10 @@ def dashboard(request, *args, **kwargs):
                "active_scrum_teams"  : active_scrum_teams,
                "on_hold_scrum_teams" : on_hold_scrum_teams,
                "sprint_zero_scrum_teams" : sprint_zero_scrum_teams,
-               "domain_count" : domain_count
+               "domain_count" : domain_count,
+               "leave_people_count" : leave_people_count,
+               "active_people_count" : active_people_count,
+               "unactive_people_count" : unactive_people_count
                }
 
     target_page = './html/dashboard.html'

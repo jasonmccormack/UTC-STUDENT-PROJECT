@@ -6,7 +6,7 @@
 
 .navigation {
 	 height: 70px !important;
-	 background: #5E8C61;
+	 background: #5D8C60 !important;
 }
  .brand {
 	 position: absolute;
@@ -41,7 +41,7 @@
 	 display: block;
 	 padding: 0 20px;
 	 line-height: 70px;
-	 background: #262626;
+	 background: #5D8C60;
 	 color: #fff;
 	 text-decoration: none;
 }
@@ -148,13 +148,13 @@
 	 margin: 0 auto;
 	 padding: 10px;
 }
- 
+
 </style>
 <div>
 <section class="user_bar">
 {% if user.is_authenticated %}
   You are signed in as - {{ user.username }}
-{% endif %}  
+{% endif %}
 </section>
 </div>
 
@@ -189,7 +189,7 @@
                     </li>
 					<li>
                         <a href="{% url 'all_product_owners' %}">Product Owners</a>
-                    </li> 
+                    </li>
                     {% comment %} <li>
                        <a href="#!">Job Roles</a>
                     </li> {% endcomment %}
