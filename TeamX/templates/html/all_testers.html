@@ -2,43 +2,23 @@
 
 {% block content %}
 
-<div class="ScrumTeam">SCRUM TEAMS - {{ team.team_name }}</div>
-
-    <table class="blueTable">
-    
-        <tr>
-            <th class="">Scrum Team</th>
-            <th class="">Scrum Master</th>
-            <th class="">Status</th>
-            <th class="">Type</th> 
-            <th class="">Focus</th>
-            <th class="">Domain</th>
-        </tr>
-        <tr>
-            <td class="">{{ team.team_name }}</td>
-            <td class="">{{ team.scrum_master}}</td>
-            <td class="">{{ team.team_status}}</td>
-            <td class="">{{ team.team_type}} </td>
-            <td class="">{{ team.current_focus}}</td>
-            <td class="">{{ team.domain}}</td>
-        </tr>
-    </table>
-
-<div class="TeamMembers">TEAM MEMBERS</div>
+<div class="ScrumTeam">TESTERS</div>
 
     <table class="blueTable">
     
         <tr>
             <th class="">Name</th>
-             <th class="">Location</th>
+            <th class="">Scrum Team</th>
+            <th class="">Location</th>
             <th class="">Work Pattern</th>
             <th class="">Hours Work Per Week</th>
             <th class="">Role</th>
-        </tr>
+        </tr>   
 
         {% for people in all_people %}
             <tr>
                 <td class="">{{people.first_name}} {{people.second_name}}</td> 
+                <td class="">{{people.scrum_team_name}}</td>
                 <td class="">{{people.location}}</td> 
                 <td class="">{{people.work_pattern}}</td>
                 <td class="">{{people.hours_per_week}}</td>
@@ -48,6 +28,7 @@
         {% endfor %}             
     </table>
 
+</div>
 
 <div class="TeamMembers">LEAVE CALENDAR</div>
    <table class="blueTable">
