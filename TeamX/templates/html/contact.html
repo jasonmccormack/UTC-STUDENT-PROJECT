@@ -9,10 +9,10 @@
 	<link rel="stylesheet" type="text/css" href="{% static "./vendor/animate/animate.css" %}">
 	<link rel="stylesheet" type="text/css" href="{% static "./vendor/css-hamburgers/hamburgers.min.css" %}">
 	<link rel="stylesheet" type="text/css" href="{% static "./vendor/select2/select2.min.css" %}">
-	<link rel="stylesheet" type="text/css" href="{% static "./css/util.css" %}">
-	<link rel="stylesheet" type="text/css" href="{% static "./css/contactmain.css" %}">
+	{% comment %} <link rel="stylesheet" type="text/css" href="{% static "./css/util.css" %}"> {% endcomment %}
+    <link rel="stylesheet" type="text/css" href="{% static "./css/contactmain.css" %}"> 
 {% endblock %}
-{% block title %}TeamX | Contact{% endblock %}
+{% comment %} {% block title %}TeamX | Contact{% endblock %} {% endcomment %}
 {% block content %}
 	<div class="contact1">
 		<div class="container-contact1">
@@ -23,6 +23,10 @@
 			<form class="contact1-form validate-form" method="POST">
 				<span class="contact1-form-title">
 					Get in touch
+				</span>
+				<span>
+					<center>In the event of an issue or bug contact us here.</center>
+					<br>
 				</span>
 				{% csrf_token %}
 				<h1>{{ text }}</h1>
@@ -65,7 +69,7 @@
 	<script src="{% static "./vendor/tilt/tilt.jquery.min.js" %}"></script>
 	<script>
 		$('.js-tilt').tilt({
-			scale: 1.1
+			scale: 1.2
 		})
 	</script>
 	<script>

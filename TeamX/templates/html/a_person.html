@@ -1,30 +1,8 @@
-{% extends "base.html" %}
-
 {% block content %}
 
-<div class="ScrumTeam">SCRUM TEAMS - {{ team.team_name }}</div>
+{% comment %} <div class="ScrumTeam">a Person- {{people.first_name}} {{people.second_name}}</div>
 
-    <table class="blueTable">
-    
-        <tr>
-            <th class="">Scrum Team</th>
-            <th class="">Scrum Master</th>
-            <th class="">Status</th>
-            <th class="">Type</th> 
-            <th class="">Focus</th>
-            <th class="">Domain</th>
-        </tr>
-        <tr>
-            <td class="">{{ team.team_name }}</td>
-            <td class="">{{ team.scrum_master}}</td>
-            <td class="">{{ team.team_status}}</td>
-            <td class="">{{ team.team_type}} </td>
-            <td class="">{{ team.current_focus}}</td>
-            <td class="">{{ team.domain}}</td>
-        </tr>
-    </table>
-
-<div class="TeamMembers">TEAM MEMBERS</div>
+ 
 
     <table class="blueTable">
     
@@ -36,7 +14,6 @@
             <th class="">Role</th>
         </tr>
 
-        {% for people in all_people %}
             <tr>
                 <td class="">{{people.first_name}} {{people.second_name}}</td> 
                 <td class="">{{people.location}}</td> 
@@ -45,11 +22,11 @@
                 <td class="">{{people.scrum_team_roles}}</td>
 
             </tr>       
-        {% endfor %}             
-    </table>
+             
+    </table> {% endcomment %}
 
 
-<div class="TeamMembers">LEAVE CALENDAR</div>
+{% comment %} <div class="TeamMembers">LEAVE CALENDAR</div>
    <table class="blueTable">
         <tr>
             <th class="">Name</th>
@@ -70,7 +47,7 @@
                     </tr>
                 {% endif %}
             {% endfor %}
-        {% endfor %}
+        {% endfor %} {% endcomment %}
  
  
     <style>
