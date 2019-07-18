@@ -1,37 +1,3 @@
-<!-- <style>
-body{
-    padding-top: 50px;
-}
-
-.right{
-    margin:5px;
-    float: right; 
-}
-</style>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-    <a class="navbar-brand" href="/">TeamX</a>
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'all_teams' %}">Teams</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'about' %}">About</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'help' %}">Help</a>
-        </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
-        </li>
-    </ul>
-</nav> -->
-
 <style>
 
 .over {
@@ -40,7 +6,7 @@ body{
 
 .navigation {
 	 height: 70px !important;
-	 background: #262626;
+	 background: #5E8C61;
 }
  .brand {
 	 position: absolute;
@@ -53,6 +19,7 @@ body{
  .brand a, .brand a:visited {
 	 color: #fff;
 	 text-decoration: none;
+	 font-size: 1.4em !important;
 }
  .nav-container {
 	 max-width: 1000px;
@@ -183,6 +150,14 @@ body{
 }
  
 </style>
+<div>
+<section class="user_bar">
+{% if user.is_authenticated %}
+  You are signed in as - {{ user.username }}
+{% endif %}  
+</section>
+</div>
+
 <section class="navigation fixed-top">
     <div class="nav-container">
         <div class="brand">
@@ -198,18 +173,30 @@ body{
                 <a href="{% url 'dashboard' %}">Dashboard</a>
             </li>
             <li>
-                <a href="#!">Management</a>
+                <a href="#!">View</a>
                 <ul class="nav-dropdown">
                     <li>
-                        <a href="{% url 'admin:index' %}">Admin</a>
+                        <a href="{% url 'all_teams' %}">Teams</a>
                     </li>
-                    <li>
-                        <a href="{% url 'all_teams' %}">All Teams</a>
+				 	<li>
+                        <a href="{% url 'all_people' %}">People</a>
                     </li>
+					<li>
+                        <a href="{% url 'all_developers' %}">Developers</a>
+                    </li>
+					<li>
+                        <a href="{% url 'all_testers' %}">Testers</a>
+                    </li>
+					<li>
+                        <a href="{% url 'all_product_owners' %}">Product Owners</a>
+                    </li> 
                     {% comment %} <li>
                        <a href="#!">Job Roles</a>
                     </li> {% endcomment %}
                 </ul>
+            </li>
+			<li>
+                <a href="{% url 'admin:index' %}">Admin</a>
             </li>
             <li>
                 <a href="{% url 'contact' %}">Contact Us</a>
@@ -227,6 +214,22 @@ body{
         </nav>
     </div>
 </section>
+
+
+
+<style>
+.user_bar{
+	background-color: #7bb67e;
+	color: dark-grey;
+	width: 100%;
+    height: auto;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	border-width: 1px;
+	}
+</style>
+
 <script>
 (function($) { // Begin jQuery
   $(function() { // DOM ready

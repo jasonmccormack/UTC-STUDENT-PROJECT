@@ -30,6 +30,49 @@ def all_teams(request, *args, **kwargs):
     target_page = './html/all_teams.html'
     return render(request, target_page, context) 
 
+def all_people(request, *args, **kwargs):
+
+    people_stuff = AllMembers.objects.all()
+    leave_stuff = LeaveCalendar.objects.all()
+
+    context = {"all_people" : people_stuff,
+               "all_leave"  : leave_stuff}
+
+    target_page = './html/all_people.html'
+    return render(request,  target_page , context)
+
+def all_developers(request, *args, **kwargs):
+
+    people_stuff = AllMembers.objects.filter(scrum_team_roles=1)
+    leave_stuff = LeaveCalendar.objects.all()
+
+    context = {"all_people" : people_stuff,
+               "all_leave"  : leave_stuff}
+
+    target_page = './html/all_developers.html'
+    return render(request,  target_page , context)
+
+def all_testers(request, *args, **kwargs):
+
+    people_stuff = AllMembers.objects.filter(scrum_team_roles=11)
+    leave_stuff = LeaveCalendar.objects.all()
+
+    context = {"all_people" : people_stuff,
+               "all_leave"  : leave_stuff}
+
+    target_page = './html/all_testers.html'
+    return render(request,  target_page , context)
+
+def all_product_owners(request, *args, **kwargs):
+
+    people_stuff = AllMembers.objects.filter(scrum_team_roles=7)
+    leave_stuff = LeaveCalendar.objects.all()
+
+    context = {"all_people" : people_stuff,
+               "all_leave"  : leave_stuff}
+
+    target_page = './html/all_product_owners.html'
+    return render(request,  target_page , context)    
 
 def about(request, *args, **kwargs):
     target_page = './html/about.html'
@@ -101,7 +144,18 @@ def team_details(request, pk, *args, **kwargs):
     target_page = './html/a_team.html'
     return render(request,  target_page , context)
 
-    
+def people_details(request, mypk, *args, **kwargs):
+   
+    people_stuff = AllMembers.objects.get(pk=mypk)
+    leave_stuff = LeaveCalendar.objects.all()
+
+    context = {"all_people" : people_stuff,
+               "all_leave"  : leave_stuff}
+    target_page = './html/af_person.html'
+    return render(request,  target_page , context)
+
+
+
 def error_404(request, exception):
         return render(request,'./html/error_404.html')
 

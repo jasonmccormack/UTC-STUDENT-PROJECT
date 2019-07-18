@@ -2,7 +2,7 @@
 {% load static %}
 {% block header %}
   <script>document.getElementsByTagName("html")[0].className += " js";</script>
-  <link rel="stylesheet" href="{% static "./css/faqstyle.css" %}">
+  {% comment %} <link rel="stylesheet" href="{% static "./css/faqstyle.css" %}"> {% endcomment %}
   <style>
   a:link, a:visited, a:hover {
   text-decoration: none;
@@ -180,4 +180,6 @@
 </section> <!-- cd-faq -->
 <script src="{% static "/js/util.js" %}"></script>
 <script src="{% static "/js/mainfaq.js" %}"></script> 
+
+
 {% endblock %}

@@ -2,10 +2,10 @@
 {% block title %}TeamX | Dashboard{% endblock %}
 {% block content %}
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
-  <p><a href="{% url 'logout' %}">logout</a></p>
+ {% comment %}  Hi {{ user.username }}!
+  <p><a href="{% url 'logout' %}">logout</a></p> {% endcomment %}
 {% else %}
   {% include "./landingpage.html" %}
-  <a href="{% url 'login' %}">login</a>
+  {% comment %} <a href="{% url 'login' %}">login</a> {% endcomment %}
 {% endif %}
 {% endblock %}
