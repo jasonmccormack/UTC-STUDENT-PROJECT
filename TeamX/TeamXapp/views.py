@@ -116,7 +116,7 @@ def dashboard(request, *args, **kwargs):
     people_count = AllMembers.objects.all().count()
     on_hold_scrum_teams = ScrumTeam.objects.filter(team_status = 2).count()
     sprint_zero_scrum_teams = ScrumTeam.objects.filter(team_status = 3).count()
-    active_people_count = AllMembers.objects.filter(IN_TEAM_CHOICES = 'Yes').count()
+    active_people_count = AllMembers.objects.all().count() - AllMembers.objects.filter(scrum_team_name = None).count()
     leave_people_count = LeaveCalendar.objects.all().count()
     
     domain_count = Domain.objects.all().count()
