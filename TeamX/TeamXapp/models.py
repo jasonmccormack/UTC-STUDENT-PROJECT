@@ -37,7 +37,8 @@ class AllMembers(models.Model):
     scrum_team_roles = models.ForeignKey("ScrumTeamRole", on_delete=models.DO_NOTHING, verbose_name="Roles", null=True, blank=True)
     myskill = models.ManyToManyField('Skills', blank=True, verbose_name="Skills")
     avatar = models.ImageField(null=True, blank=True)
-    in_team = models.CharField(choices=IN_TEAM_CHOICES, max_length=3, default='NO', null=True, blank=True, verbose_name="In team")
+    location = models.ForeignKey("location",on_delete=models.PROTECT, verbose_name="Location", null=True, blank=True)
+    # in_team = models.CharField(choices=IN_TEAM_CHOICES, max_length=3, default='NO', null=True, blank=True, verbose_name="In team")
 
     def __str__ (self):
         return self.first_name + ' ' +  self.second_name
@@ -167,3 +168,16 @@ class LeaveCalendar(models.Model):
     def __str__(self):
         return str(self.team_member)
 
+class location(models.Model):
+
+    location_name = models.CharField(max_length=50, verbose_name="Location")
+    country = models.CharField(max_length=100, verbose_name="Country")
+
+    class Meta:
+        verbose_name = ("Location")
+        verbose_name_plural = ("Locations")
+
+    def __str__(self):
+        return self.location_name
+
+    

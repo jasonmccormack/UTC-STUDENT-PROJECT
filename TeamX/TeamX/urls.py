@@ -1,18 +1,3 @@
-"""TeamX URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/2.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 #from django.http import HttpResponse, HttpResponseNotFound
 from django.conf.urls import handler404, handler500
 from django.contrib.auth import views
@@ -29,7 +14,12 @@ from TeamXapp.views import (
     help,
     contact,
     dashboard,
-    team_details
+    team_details,
+    all_people,
+    all_developers,
+    all_testers,
+    all_product_owners,
+    people_details
 )
 
 urlpatterns = [
@@ -44,6 +34,12 @@ urlpatterns = [
     path('contact/'   , contact      , name ='contact'), 
     path('dashboard/' , dashboard    , name ='dashboard'),
     url(r'(?P<pk>\d+)/$', team_details , name = 'team_details'), 
+    url(r'(?P<mypk>\d+)/$', people_details , name = 'people_details'),     
+    path('all_people/' , all_people     , name ='all_people'), 
+    path('all_developers/' , all_developers     , name ='all_developers'), 
+    path('all_testers/' , all_testers     , name ='all_testers'), 
+    path('all_product_owners/' , all_product_owners    , name ='all_product_owners'),    
+
 ]
 
 handler500 = 'TeamXapp.views.error_500'
