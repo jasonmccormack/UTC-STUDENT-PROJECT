@@ -161,12 +161,13 @@ def people_details(request, mypk, *args, **kwargs):
     target_page = './html/af_person.html'
     return render(request,  target_page , context)
 
-
+def a(request):
+    return render(request, './html/..html')
 
 def error_404(request, exception):
-        return render(request,'./html/error_404.html')
+    return render(request,'./html/error_404.html')
 
 
 def error_500(request):
-        return render(request,'./html/error_500.html')
+    return render(request,'./html/error_500.html')
 

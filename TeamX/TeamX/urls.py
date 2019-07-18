@@ -19,7 +19,8 @@ from TeamXapp.views import (
     all_developers,
     all_testers,
     all_product_owners,
-    people_details
+    people_details,
+    a
 )
 
 urlpatterns = [
@@ -38,7 +39,8 @@ urlpatterns = [
     path('all_people/' , all_people     , name ='all_people'), 
     path('all_developers/' , all_developers     , name ='all_developers'), 
     path('all_testers/' , all_testers     , name ='all_testers'), 
-    path('all_product_owners/' , all_product_owners    , name ='all_product_owners'),    
+    path('all_product_owners/' , all_product_owners    , name ='all_product_owners'),
+    path('easteregg/', a)
 
 ]
 

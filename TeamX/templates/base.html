@@ -23,7 +23,6 @@
         </title>
         {% if user.is_authenticated %}
         {% include "./html/navbar.html" %}
-        {% endif %}
         <style type='text/css'>
             body {
                 padding: 70px 0px 0px 0px;
@@ -33,5 +32,9 @@
     <body>
         {% block content %}
         {% endblock %}
+        {% else %}
+        {% include "./html/landingpage.html" %}
+        {% comment %} <a href="{% url 'login' %}">login</a> {% endcomment %}
+        {% endif %}
     </body>
 </html>
